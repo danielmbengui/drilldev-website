@@ -1,0 +1,16 @@
+{
+  "title": "Mufasa 1",
+  "types": [
+    "illustration",
+    "manga",
+    "disney"
+  ],
+  "src": "/pictures/images/mufasa-1.png",
+  "srcBase": "/pictures/images/mufasa-1.png",
+  "prompt": "Mufasa A full body inside the cliff of hope. uiltra detailed. illustrated disney movie style",
+  "tags": [
+    "lion king",
+    "full body",
+    "disney movie"
+  ]
+}

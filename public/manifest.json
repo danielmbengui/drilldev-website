@@ -1,0 +1,41 @@
+{
+  "name": "Drill Dev",
+  "short_name": "Drill Dev App",
+  "description": "How to generate AI art",
+  "icons": [
+    {
+      "src": "/images/logos/logo_orange_pic_no_back.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/logos/logo_orange_pic_no_back.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/images/logos/logo_orange_pic_no_back.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/logos/logo_orange_pic_no_back.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#094397",
+  "background_color": "#ffffff",
+  "start_url": "/",
+  "scope": "/",
+  "related_applications": [{
+    "platform": "webapp",
+    "url": "https://drill-dev.com/manifest.json"
+  }],
+  "display": "standalone",
+  "orientation": "portrait"
+}

@@ -1,0 +1,526 @@
+[
+    {
+        "title": "Popeye",
+        "types": [
+            "cartoon style"
+        ],
+        "src": "/images/mid-journey/cartoon/popeye.png",
+        "srcBase": "/images/mid-journey/base/base-9.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "as popeye, manga style v 4 ar"
+    },
+    {
+        "title": "Super Mario",
+        "types": [
+            "cartoon character",
+            "super mario"
+        ],
+        "src": "/images/mid-journey/cartoon/super-mario.png",
+        "srcBase": "/images/mid-journey/base/base-9.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "like super Mario, a cartoon Character, vector graphics, 8k, v 4 ar"
+    },
+    {
+        "title": "Harry Potter",
+        "types": [
+            "manga style",
+            "harry potter"
+        ],
+        "src": "/images/mid-journey/manga/harry-potter.png",
+        "srcBase": "/images/mid-journey/base/base-9.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "as harry Potter, manga style v4 ar"
+    },
+    {
+        "title": "Where is Waldo ?",
+        "types": [
+            "cartoon style"
+        ],
+        "src": "/images/mid-journey/cartoon/where-is-waldo.png",
+        "srcBase": "/images/mid-journey/base/base-9.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "as where is waldo, in front of people:50, cartoon style, futuristic hyper realistic"
+    },
+    {
+        "title": "Hulk",
+        "types": [
+            "manga style"
+        ],
+        "src": "/images/mid-journey/manga/hulk.png",
+        "srcBase": "/images/mid-journey/base/base-9.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "as hulk manga style v 4 ar"
+    },
+    {
+        "title": "City Hunter",
+        "types": [
+            "manga style"
+        ],
+        "src": "/images/mid-journey/manga/nicky-larson.png",
+        "srcBase": "/images/mid-journey/base/base-9.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "as nicky larsen, manga style v 4 ar"
+    },
+    {
+        "title": "Black Simpson",
+        "types": [
+            "black skin",
+            "cartoon style"
+        ],
+        "src": "/images/mid-journey/cartoon/simpson.png",
+        "srcBase": "/images/mid-journey/base/base-9.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "as a Simpson character black skin, cartoon style"
+    },
+    {
+        "title": "Tintin",
+        "types": [
+            "cartoon style"
+        ],
+        "src": "/images/mid-journey/cartoon/tintin.png",
+        "srcBase": "/images/mid-journey/base/base-9.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "as tintin cartoon style v 4 ar"
+    },
+    {
+        "title": "Angolan astronaut",
+        "types": [
+            "freestyle"
+        ],
+        "src": "/images/mid-journey/astronaut/astronaut-1.png",
+        "srcBase": "/images/mid-journey/base/base-1.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "astronaut with angolan flag ar"
+    },
+    {
+        "title": "Superman",
+        "types": [
+            "manga style",
+            "8k resolution"
+        ],
+        "src": "/images/mid-journey/manga/superman.png",
+        "srcBase": "/images/mid-journey/base/base-9.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "as superman comics, manga style, 8k resolution"
+    },
+    {
+        "title": "MetAstronaut",
+        "types": [
+            "freestyle"
+        ],
+        "src": "/images/mid-journey/astronaut/astronaut-2.png",
+        "srcBase": "/images/mid-journey/base/base-2.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "Astronaut watching TV, super realism, cinematic, ultra shadows, maximum quality of details"
+    },
+    {
+        "title": "OneMoonOneEgg",
+        "types": [
+            "realistic 4k",
+            "4k resolution"
+        ],
+        "src": "/images/mid-journey/moon/one-moon-one-man-0.png",
+        "srcBase": "/images/mid-journey/base/base-2.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "a man with a foot on the moon and the other foot on an egg, hyper realistic 4k resolution"
+    },
+    {
+        "title": "OneMoonOneEgg",
+        "types": [
+            "realistic 4k",
+            "4k resolution"
+        ],
+        "src": "/images/mid-journey/moon/one-moon-one-man-1.png",
+        "srcBase": "/images/mid-journey/base/base-2.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "a man with a foot on the moon and the other foot on an egg, hyper realistic 4k resolution"
+    },
+    {
+        "title": "OneMoonOneEgg",
+        "types": [
+            "realistic 4k",
+            "4k resolution"
+        ],
+        "src": "/images/mid-journey/moon/one-moon-one-man-2.png",
+        "srcBase": "/images/mid-journey/base/base-2.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "a man with a foot on the moon and the other foot on an egg, hyper realistic 4k resolution"
+    },
+    {
+        "title": "OneMoonOneEgg",
+        "types": [
+            "realistic 4k",
+            "4k resolution"
+        ],
+        "src": "/images/mid-journey/moon/one-moon-one-man-3.png",
+        "srcBase": "/images/mid-journey/base/base-2.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "a man with a foot on the moon and the other foot on an egg, hyper realistic 4k resolution"
+    },
+    {
+        "title": "Whale & Aquarium",
+        "types": [
+            "realistic 4k",
+            "4k resolution"
+        ],
+        "src": "/images/mid-journey/animal/whale-0.png",
+        "srcBase": "/images/mid-journey/base/base-0.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "a whale in a small aquarium, hyper realistic 4k resolution"
+    },
+    {
+        "title": "Whale & Aquarium",
+        "types": [
+            "realistic 4k",
+            "4k resolution"
+        ],
+        "src": "/images/mid-journey/animal/whale-1.png",
+        "srcBase": "/images/mid-journey/base/base-0.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "a whale in a small aquarium, hyper realistic 4k resolution"
+    },
+    {
+        "title": "Whale & Aquarium",
+        "types": [
+            "realistic 4k",
+            "4k resolution"
+        ],
+        "src": "/images/mid-journey/animal/whale-2.png",
+        "srcBase": "/images/mid-journey/base/base-0.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "a whale in a small aquarium, hyper realistic 4k resolution"
+    },
+    {
+        "title": "Whale & Aquarium",
+        "types": [
+            "realistic 4k",
+            "4k resolution"
+        ],
+        "src": "/images/mid-journey/animal/whale-3.png",
+        "srcBase": "/images/mid-journey/base/base-0.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "a whale in a small aquarium, hyper realistic 4k resolution"
+    },
+    {
+        "title": "Small Town",
+        "types": [
+            "small town"
+        ],
+        "src": "/images/mid-journey/place/small-town-0.png",
+        "srcBase": "/images/mid-journey/base/base-4.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "a painting of a blockbuster video store in a small town at dusk with people hanging out in the parking lot"
+    },
+    {
+        "title": "Small Town",
+        "types": [
+            "small town"
+        ],
+        "src": "/images/mid-journey/place/small-town-1.png",
+        "srcBase": "/images/mid-journey/base/base-4.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "a painting of a blockbuster video store in a small town at dusk with people hanging out in the parking lot"
+    },
+    {
+        "title": "Small Town",
+        "types": [
+            "small town"
+        ],
+        "src": "/images/mid-journey/place/small-town-2.png",
+        "srcBase": "/images/mid-journey/base/base-4.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "a painting of a blockbuster video store in a small town at dusk with people hanging out in the parking lot"
+    },
+    {
+        "title": "Small Town",
+        "types": [
+            "small town"
+        ],
+        "src": "/images/mid-journey/place/small-town-3.png",
+        "srcBase": "/images/mid-journey/base/base-4.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "a painting of a blockbuster video store in a small town at dusk with people hanging out in the parking lot"
+    },
+    {
+        "title": "Mufasa",
+        "types": [
+            "full body",
+            "disney movie"
+        ],
+        "src": "/images/mid-journey/disney/mufasa-0.png",
+        "srcBase": "/images/mid-journey/base/base-5.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "Mufasa A full body inside the cliff of hope. uiltra detailed. illustrated disney movie style"
+    },
+    {
+        "title": "Mufasa",
+        "types": [
+            "full body",
+            "disney movie"
+        ],
+        "src": "/images/mid-journey/disney/mufasa-1.png",
+        "srcBase": "/images/mid-journey/base/base-5.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "Mufasa A full body inside the cliff of hope. uiltra detailed. illustrated disney movie style"
+    },
+    {
+        "title": "Mufasa",
+        "types": [
+            "full body",
+            "disney movie"
+        ],
+        "src": "/images/mid-journey/disney/mufasa-2.png",
+        "srcBase": "/images/mid-journey/base/base-5.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "Mufasa A full body inside the cliff of hope. uiltra detailed. illustrated disney movie style"
+    },
+    {
+        "title": "Naruto Gang",
+        "types": [
+            "freestyle"
+        ],
+        "src": "/images/mid-journey/manga/naruto-gang-0.png",
+        "srcBase": "/images/mid-journey/base/base-6.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "naruto,itachi,zoro,luffy, ichigo,goku,vegeta,friends,gangster's"
+    },
+    {
+        "title": "Naruto Gang",
+        "types": [
+            "freestyle"
+        ],
+        "src": "/images/mid-journey/manga/naruto-gang-1.png",
+        "srcBase": "/images/mid-journey/base/base-6.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "naruto,itachi,zoro,luffy, ichigo,goku,vegeta,friends,gangster's"
+    },
+    {
+        "title": "Naruto Gang",
+        "types": [
+            "freestyle"
+        ],
+        "src": "/images/mid-journey/manga/naruto-gang-2.png",
+        "srcBase": "/images/mid-journey/base/base-6.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "naruto,itachi,zoro,luffy, ichigo,goku,vegeta,friends,gangster's"
+    },
+    {
+        "title": "Naruto Gang",
+        "types": [
+            "freestyle"
+        ],
+        "src": "/images/mid-journey/manga/naruto-gang-3.png",
+        "srcBase": "/images/mid-journey/base/base-6.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "naruto,itachi,zoro,luffy, ichigo,goku,vegeta,friends,gangster's"
+    },
+    {
+        "title": "Naruto Gang",
+        "types": [
+            "freestyle"
+        ],
+        "src": "/images/mid-journey/manga/naruto-gang-4.png",
+        "srcBase": "/images/mid-journey/base/base-6.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "naruto,itachi,zoro,luffy, ichigo,goku,vegeta,friends,gangster's"
+    },
+    {
+        "title": "Naruto Gang",
+        "types": [
+            "freestyle"
+        ],
+        "src": "/images/mid-journey/manga/naruto-gang-5.png",
+        "srcBase": "/images/mid-journey/base/base-6.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "naruto,itachi,zoro,luffy, ichigo,goku,vegeta,friends,gangster's"
+    },
+    {
+        "title": "Naruto Gang",
+        "types": [
+            "freestyle"
+        ],
+        "src": "/images/mid-journey/manga/naruto-gang-6.png",
+        "srcBase": "/images/mid-journey/base/base-6.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "naruto,itachi,zoro,luffy, ichigo,goku,vegeta,friends,gangster's"
+    },
+    {
+        "title": "Naruto Gang",
+        "types": [
+            "freestyle"
+        ],
+        "src": "/images/mid-journey/manga/naruto-gang-7.png",
+        "srcBase": "/images/mid-journey/base/base-6.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "naruto,itachi,zoro,luffy, ichigo,goku,vegeta,friends,gangster's"
+    },
+    {
+        "title": "Tennis Ball Cap",
+        "types": [
+            "freestyle"
+        ],
+        "src": "/images/mid-journey/sport/tennis-0.png",
+        "srcBase": "/images/mid-journey/base/base-7.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "logo tenis ball With cap"
+    },
+    {
+        "title": "Tennis Ball Cap",
+        "types": [
+            "freestyle"
+        ],
+        "src": "/images/mid-journey/sport/tennis-1.png",
+        "srcBase": "/images/mid-journey/base/base-7.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "logo tenis ball With cap"
+    },
+    {
+        "title": "Tennis Ball Cap",
+        "types": [
+            "freestyle"
+        ],
+        "src": "/images/mid-journey/sport/tennis-2.png",
+        "srcBase": "/images/mid-journey/base/base-7.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "logo tenis ball With cap"
+    },
+    {
+        "title": "Pig on a bar",
+        "types": [
+            "high detail"
+        ],
+        "src": "/images/mid-journey/cypher/pig-0.png",
+        "srcBase": "/images/mid-journey/base/base-8.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "Happy pig waiter in a restaurant, Synthwave, cypher, high detail, realism"
+    },
+    {
+        "title": "Pig on a bar",
+        "types": [
+            "high detail"
+        ],
+        "src": "/images/mid-journey/cypher/pig-1.png",
+        "srcBase": "/images/mid-journey/base/base-8.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "Happy pig waiter in a restaurant, Synthwave, cypher, high detail, realism"
+    },
+    {
+        "title": "Help me",
+        "types": [
+            "freestyle"
+        ],
+        "src": "/images/mid-journey/people/little-white-girl-0.png",
+        "srcBase": "/images/mid-journey/base/base-10.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "help poor people, realism"
+    },
+    {
+        "title": "Crochella",
+        "types": [
+            "freestyle"
+        ],
+        "src": "/images/mid-journey/manga/crochella-0.png",
+        "srcBase": "/images/mid-journey/base/base-15.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "anime style"
+    },
+    {
+        "title": "Crochella",
+        "types": [
+            "freestyle"
+        ],
+        "src": "/images/mid-journey/manga/crochella-1.png",
+        "srcBase": "/images/mid-journey/base/base-15.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "anime style"
+    },
+    {
+        "title": "Bored",
+        "types": [
+            "freestyle"
+        ],
+        "src": "/images/mid-journey/people/giorgio.png",
+        "srcBase": "/images/mid-journey/base/base-20.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "portrait realistic orange lighting, photography, look sympatic"
+    },
+    {
+        "title": "Victor augmented",
+        "types": [
+            "black skin"
+        ],
+        "src": "/images/mid-journey/people/victor-0.png",
+        "srcBase": "/images/mid-journey/base/base-30.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "as a famous painting of a black skin guy, paint style"
+    },
+    {
+        "title": "Victor augmented",
+        "types": [
+            "black skin"
+        ],
+        "src": "/images/mid-journey/people/victor-1.png",
+        "srcBase": "/images/mid-journey/base/base-30.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "as a famous painting of a black skin guy, paint style"
+    },
+    {
+        "title": "Victor augmented",
+        "types": [
+            "black skin"
+        ],
+        "src": "/images/mid-journey/people/victor-2.png",
+        "srcBase": "/images/mid-journey/base/base-30.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "as a famous painting of a black skin guy, paint style"
+    },
+
+    {
+        "title": "Worksite in progress",
+        "types": [
+            "beautiful forest",
+            "realistic 4k",
+            "4k resolution"
+        ],
+        "src": "/images/mid-journey/place/building-0.png",
+        "srcBase": "/images/mid-journey/base/base-11.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "complete the picture with beautiful forest, hyper realistic 4k resolution"
+    },
+    {
+        "title": "Worksite in progress",
+        "types": [
+            "beautiful forest",
+            "realistic 4k",
+            "4k resolution"
+        ],
+        "src": "/images/mid-journey/place/building-1.png",
+        "srcBase": "/images/mid-journey/base/base-11.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "complete the picture with beautiful forest, hyper realistic 4k resolution"
+    },
+    {
+        "title": "Worksite in progress",
+        "types": [
+            "beautiful forest",
+            "realistic 4k",
+            "4k resolution"
+        ],
+        "src": "/images/mid-journey/place/building-2.png",
+        "srcBase": "/images/mid-journey/base/base-11.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "complete the picture with beautiful forest, hyper realistic 4k resolution"
+    },
+    {
+        "title": "Worksite in progress",
+        "types": [
+            "beautiful forest",
+            "realistic 4k",
+            "4k resolution"
+        ],
+        "src": "/images/mid-journey/place/building-3.png",
+        "srcBase": "/images/mid-journey/base/base-11.png",
+        "dimensions": "1024 x 1024",
+        "prompt": "complete the picture with beautiful forest, hyper realistic 4k resolution"
+    }
+]

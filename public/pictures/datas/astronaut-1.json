@@ -1,0 +1,14 @@
+{
+  "title": "Astronaut magic",
+  "types": [
+    "illustration"
+  ],
+  "src": "/pictures/images/astronaut-1.png",
+  "srcBase": "/pictures/images/astronaut-1.png",
+  "prompt": "astronaut with angolan flag ar",
+  "tags": [
+    "freestyle",
+    "astronaut",
+    "moon"
+  ]
+}
