@@ -4,7 +4,7 @@ import HomeComponent from '../components/Home/HomeComponent';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { NAMESPACE_LANGAGE_COMMON, NAMESPACE_LANGAGE_HOME, TAB_LANGAGES, TAB_NAMEPACES } from '@/constants';
 import { useTranslation } from 'next-i18next';
-import ContainerPage from '@/components/Containers/ContainerPage';
+import ContainerPageComponent from '@/components/Containers/ContainerPageComponent';
 import { Button, Card, Collapse, Grid, Link, Modal, Text, useTheme } from '@nextui-org/react';
 import TutorialComponent from '@/components/Home/TutorialComponent';
 import { useEffect, useState } from 'react';
@@ -16,7 +16,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import Script from 'next/script';
-import ContainerPageWithoutHeader from '@/components/Containers/ContainerPageWithoutHeader';
+import ContainerPageWithoutHeaderComponent from '@/components/Containers/ContainerPageWithoutHeaderComponent';
 import { Pagination } from "@nextui-org/react";
 
 
@@ -57,7 +57,7 @@ export default function TutorialPage(props) {
     */
 
     return (
-        <ContainerPageWithoutHeader
+        <ContainerPageWithoutHeaderComponent
             isMobile={isMobile} isTablet={isTablet} isLaptop={isLaptop}
             title={
                 <Text h1 size={45} b css={{
@@ -412,7 +412,7 @@ export default function TutorialPage(props) {
                     }
                 </Modal.Body>
             </Modal>
-        </ContainerPageWithoutHeader>
+        </ContainerPageWithoutHeaderComponent>
     )
 }
 

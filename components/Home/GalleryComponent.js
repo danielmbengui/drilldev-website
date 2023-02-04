@@ -4,7 +4,7 @@ import NavbarComponent from "../Navbar/NavbarComponent.js";
 import { Container, Card, Text, Link, Grid, Avatar, useTheme, Input } from "@nextui-org/react";
 import { Image } from "@nextui-org/react";
 import ImageMasonry from "../Customs/ImageMasonry.js";
-import ContainerPage from "../Containers/ContainerPage.js";
+import ContainerPageComponent from "../Containers/ContainerPageComponent.js";
 import SearchIcon from '@mui/icons-material/Search';
 
 const logoLightTheme = "/images/logos/logo_orange_complete_no_back.png";
@@ -37,14 +37,14 @@ function getRandomSortPictures() {
 
 
 export default function GalleryComponent(props) {
-  const {lang, isMobile} = props;
+  const {picturesFetch, lang, isMobile} = props;
   const { isDark } = useTheme();
   const [variant, setVariant] = useState("static");
   const [srcModal, setSrcModal] = useState("");
   const [titleModal, setTitleModal] = useState("");
   const [typesModal, setTypesModal] = useState([]);
   const [picture, setPicture] = useState(null);
-  const [pictures, setPictures] = useState([]);
+  const [pictures, setPictures] = useState(picturesFetch);
 
   const variants = ["static", "floating", "sticky"];
   const [visible, setVisible] = useState(false);
@@ -52,9 +52,9 @@ export default function GalleryComponent(props) {
 
   useEffect(() => {
 if (getRandomSortPictures()) {
-  setPictures(getRandomSortPictures());
+  //setPictures(getRandomSortPictures());
 } else {
-  setPictures(PICTURES);
+  //setPictures(PICTURES);
 }
   }, [])
 
@@ -84,7 +84,7 @@ if (getRandomSortPictures()) {
 <Grid.Container gap={4} justify={'center'}>
         <Grid justify="center">
           <Card css={{
-              background:'$accents4',
+              background:'$accents0',
               color:'white',
             }}>
             <Card.Body >
@@ -92,7 +92,7 @@ if (getRandomSortPictures()) {
             color="primary"
             css={{
               color:'$primary',
-              //background:'$accents5'
+              //background:'$accents0'
             }}
           
           //labelLeft="search" 

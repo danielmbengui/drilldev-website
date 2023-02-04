@@ -151,7 +151,7 @@ const ScaleIcon = ({fill, size, width = 24, height = 24, ...props}) => {
 export const icons = {
   chevron: <ChevronDownIcon fill="currentColor" size={16} />,
   scale: <ScaleIcon fill="var(--nextui-colors-warning)" size={30} />,
-  activity: <ActivityIcon fill="var(--nextui-colors-secondary)" size={30} />,
+  activity: <ActivityIcon fill="currentColor" size={30} />,
   flash: <FlashIcon fill="var(--nextui-colors-primary)" size={30} />,
   server: <ServerIcon fill="var(--nextui-colors-success)" size={30} />,
   user: <TagUserIcon fill="var(--nextui-colors-error)" size={30} />,

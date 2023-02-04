@@ -43,7 +43,7 @@ export default function ImageMasonry(props) {
             cursor:'pointer'
           }}>
             <ImageListItem>
-             <img
+             <Image
              onClick={() => {
               setPicture(item);
               setVisible(true);
@@ -51,14 +51,20 @@ export default function ImageMasonry(props) {
               src={`${item.src}?w=162&auto=format`}
               srcSet={`${item.src}?w=162&auto=format&dpr=2 2x`}
               alt={item.title}
-              loading="lazy"
+              //loading="lazy"
+              width={300}
+              height={300}
               style={{
                 display: 'block',
-                width: '100%',
-                maxWidth:'100%',
-                maxHeight:'auto',
+                width: 'auto',
+                maxWidth: '100%',
+                height:'auto',
+                maxHeight:'100%',
                 borderRadius:10
               }}
+              loader={myLoader}
+              priority
+              quality={100}
             />
             <ImageListItemBar
             title={item.title}
@@ -70,11 +76,12 @@ export default function ImageMasonry(props) {
                 <IconButton
                 sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
                 aria-label={`info about ${item.title}`}
+                onClick={() => {
+                  setPicture(item);
+                  setVisible(true);
+                }}
               >
-                <VisibilityIcon onClick={() => {
-            setPicture(item);
-            setVisible(true);
-          }} sx={{
+                <VisibilityIcon  sx={{
             color:'white',
             ":hover": {
               color:'var(--primary)'

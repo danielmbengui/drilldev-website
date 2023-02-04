@@ -4,16 +4,17 @@ import GalleryComponent from '@/components/Home/GalleryComponent';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { NAMESPACE_LANGAGE_COMMON, TAB_LANGAGES, TAB_NAMEPACES } from '@/constants';
 import { useTranslation } from 'next-i18next';
-import ContainerPage from '@/components/Containers/ContainerPage';
+import ContainerPageComponent from '@/components/Containers/ContainerPageComponent';
 import { Text, useTheme } from '@nextui-org/react';
-import ContainerPageWithoutHeader from '@/components/Containers/ContainerPageWithoutHeader';
+import ContainerPageWithoutHeaderComponent from '@/components/Containers/ContainerPageWithoutHeaderComponent';
+import axios from 'axios';
 
 export default function GalleryPage(props) {
   const {isDark} = useTheme();
-    const {lang, setLang, isMobile, isTablet, isLaptop} = props;
+    const {picturesFetch, lang, setLang, isMobile, isTablet, isLaptop} = props;
   const {t} = useTranslation(TAB_NAMEPACES);
   return (
-    <ContainerPageWithoutHeader
+    <ContainerPageWithoutHeaderComponent
     isMobile={isMobile} isTablet={isTablet} isLaptop={isLaptop}
         /*
         title={
@@ -30,15 +31,26 @@ export default function GalleryPage(props) {
         <meta name="description" content="Bienvenue sur notre site consacré à la démonstration d'illustrations générées par intelligence artificielle. Nous vous montrons les dernières tendances et techniques de génération d'images à l'aide de l'IA. Vous découvrirez les meilleures plateformes et outils pour créer vos propres illustrations de qualité, ainsi que les mots clés à utiliser pour optimiser les résultats. Suivez notre guide étape par étape pour créer vos propres illustrations surprenantes avec l'IA. Rejoignez notre communauté pour partager vos créations et découvrir celles des autres utilisateurs." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-<GalleryComponent lang={lang} isMobile={isMobile} />
-    </ContainerPageWithoutHeader>
+<GalleryComponent picturesFetch={picturesFetch} lang={lang} isMobile={isMobile} />
+    </ContainerPageWithoutHeaderComponent>
   )
 }
 
 export async function getStaticProps({ locale }) {
+  const data = await axios.get(`${process.env.domain}/api/drafts`, {
+    params : {
+      action:'get_all'
+    }
+  }).then((response) => {
+    //console.log("RESP", response.data.files);
+    return (response.data.files);
+  }).catch(() => {
+    //console.log("ERROR", error.message)
+    return ([]);
+  })
   return {
       props: {
-        //tabPrice: response,
+        picturesFetch: data,
           ...(await serverSideTranslations(locale, TAB_NAMEPACES, null, TAB_LANGAGES)),
           // Will be passed to the page component as props
       },

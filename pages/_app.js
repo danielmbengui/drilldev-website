@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { getDocumentTheme } from '@nextui-org/react';
 import '@/styles/globals.css';
 import { NextUIProvider } from '@nextui-org/react';
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import { lightTheme, darkTheme } from '@/styles/theme';
+import { Switch, changeTheme, useTheme } from '@nextui-org/react'
 import { DEFAULT_LANGAGE, STORAGE_SCREEN_MODE, TAB_NAMEPACES } from '@/constants';
 import {SSRProvider} from '@react-aria/ssr'; 
 import { useMediaQuery } from "@/styles/useMediaQuery";
@@ -89,7 +91,6 @@ const MyApp = ({ Component, pageProps }) => {
       sizes={sizes}
       isMobile={isMobile} isTablet={isTablet} isLaptop={isLaptop}
        />
-       <FooterComponent />
     </NextUIProvider>
     </SSRProvider>
   );

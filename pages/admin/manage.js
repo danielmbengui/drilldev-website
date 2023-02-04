@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { NAMESPACE_LANGAGE_COMMON, TAB_LANGAGES, TAB_NAMEPACES } from '@/constants';
 import { useTranslation } from 'next-i18next';
-import ContainerPage from '@/components/Containers/ContainerPage';
+import ContainerPageComponent from '@/components/Containers/ContainerPageComponent';
 import { Text, useTheme } from '@nextui-org/react';
 import ManageComponent from '@/components/Home/ManageComponent';
 
@@ -11,7 +11,7 @@ export default function ManagePage(props) {
     const {lang, setLang, isMobile, isTablet, isLaptop} = props;
   const {t} = useTranslation(TAB_NAMEPACES);
   return (
-    <ContainerPage
+    <ContainerPageComponent
     isMobile={isMobile} isTablet={isTablet} isLaptop={isLaptop}
         title={
           <Text h1 size={45} b css={{
@@ -27,7 +27,7 @@ export default function ManagePage(props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 <ManageComponent lang={lang} isMobile={isMobile} />
-    </ContainerPage>
+    </ContainerPageComponent>
   )
 }
 

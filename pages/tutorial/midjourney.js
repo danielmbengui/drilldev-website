@@ -3,7 +3,7 @@ import { Inter } from '@next/font/google';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { NAMESPACE_LANGAGE_COMMON, NAMESPACE_LANGAGE_HOME, TAB_LANGAGES, TAB_NAMEPACES } from '@/constants';
 import { useTranslation } from 'next-i18next';
-import ContainerPage from '@/components/Containers/ContainerPage';
+import ContainerPageComponent from '@/components/Containers/ContainerPageComponent';
 import { Button, Card, Collapse, Grid, Link, Modal, Text, useTheme } from '@nextui-org/react';
 import TutorialComponent from '@/components/Home/TutorialComponent';
 import { useEffect, useState } from 'react';
@@ -17,7 +17,7 @@ import useSWR from 'swr';
 import Script from 'next/script';
 import { Pagination } from "@nextui-org/react";
 import MidjourneyComponent from '@/components/Tutorial/Midjourney';
-import ContainerPageWithoutHeader from '@/components/Containers/ContainerPageWithoutHeader';
+import ContainerPageWithoutHeaderComponent from '@/components/Containers/ContainerPageWithoutHeaderComponent';
 
 
 
@@ -36,7 +36,7 @@ export default function MidjourneyPage(props) {
 
 
     return (
-      <ContainerPageWithoutHeader
+      <ContainerPageWithoutHeaderComponent
       isMobile={isMobile} isTablet={isTablet} isLaptop={isLaptop}
       title={
           <Text h1 size={45} b css={{
@@ -57,7 +57,7 @@ isMobile={isMobile}
 isTablet={isTablet}
 isLaptop={isLaptop}
         />
-      </ContainerPageWithoutHeader>
+      </ContainerPageWithoutHeaderComponent>
     )
 }
 

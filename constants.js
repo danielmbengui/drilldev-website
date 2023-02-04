@@ -1,6 +1,7 @@
 import { cwd } from 'process';
 
 /* --------------- GENERAL -------------- */
+export const WEBSITE_NAME = 'Drill Dev';
 export const APP_NAME = 'Drill Dev';
 export const DEFAULT_SCREEN_MODE = 'light';
 export const DEFAULT_LANGAGE = 'fr';
@@ -13,7 +14,7 @@ export const EXT_PNG = `.png`;
 export const EXT_JPG = `.jpg`;
 export const DIR_MIDJOURNEY_PICTURES = `${cwd()}/public/pictures/images`;
 export const DIR_MIDJOURNEY_DATAS = `${cwd()}/public/pictures/datas`;
-export const DIR_MIDJOURNEY_DRAFTS = `${cwd()}/public/images/mid-journey/drafts`;
+export const DIR_MIDJOURNEY_DRAFTS = `https://ipfs.io/ipfs/QmbaxsoB9PgQXQqedC2jeipWgBmWy4obuYynU58YnfHER6/`;
 export const RELATIVE_DIR_MID_JOURNEY = `/images/mid-journey`;
 
 /* --------------- NAME SPACES -------------- */
@@ -43,6 +44,7 @@ export const TAB_LANGAGES = [
 export const PAGE_LINK_HOME = "/";
 export const PAGE_LINK_GALLERY = "/gallery";
 export const PAGE_LINK_TUTORIAL = "/tutorial";
+export const PAGE_LINK_TUTORIAL_DRILL_DEV = "/tutorial/drilldev";
 export const PAGE_LINK_TUTORIAL_MIDJOURNEY = "/tutorial/midjourney";
 
 /* --------------- STORAGE -------------- */

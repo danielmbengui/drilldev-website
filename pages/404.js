@@ -7,8 +7,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { NAMESPACE_LANGAGE_404, NAMESPACE_LANGAGE_COMMON, PAGE_LINK_HOME, TAB_LANGAGES, TAB_NAMEPACES } from '../constants';
 import { useTranslation } from 'next-i18next';
 import { Button, Image, Link, Text, useTheme } from '@nextui-org/react';
-import ContainerPage from '@/components/Containers/ContainerPage';
-import ContainerPageWithoutHeader from '@/components/Containers/ContainerPageWithoutHeader';
+import ContainerPageComponent from '@/components/Containers/ContainerPageComponent';
+import ContainerPageWithoutHeaderComponent from '@/components/Containers/ContainerPageWithoutHeaderComponent';
 
 const NotFoundPage = (props) => {
   const {lang, setLang} = props;
@@ -25,7 +25,7 @@ useEffect(() => {
 */
 
   return (
-    <ContainerPageWithoutHeader
+    <ContainerPageWithoutHeaderComponent
     title={
       <Text h1 size={60} b css={{
         textGradient: `45deg, $${isDark ? 'white' : 'black'} -20%, $orange600 100%, $${isDark ? 'white' : 'black'} 80%`,
@@ -112,7 +112,7 @@ useEffect(() => {
           </Box>
         </Container>
       </Box>
-    </ContainerPageWithoutHeader>
+    </ContainerPageWithoutHeaderComponent>
   );
 }
 

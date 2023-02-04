@@ -17,7 +17,22 @@ const cors = initMiddleware(
 )
 
 function getAllPictures() {
-    return (getListPictures([], DIR_MIDJOURNEY_DRAFTS).array_relative);
+    const pictures = getListPictures([], DIR_MIDJOURNEY_DRAFTS);
+    /*
+    if (pictures.length) {
+        const array = pictures.map((item, index) => {
+            return(
+                {
+                    title:'',
+                    src: item,
+                    types:["illustration"],
+                }
+            )
+        }) 
+        return (array);
+    }
+    */
+    return ([]);
 }
 
 function getOnePicture(name) {
@@ -54,33 +69,14 @@ export default async function handler(req, res) {
         //const array_relative = getListDraftPictures().array_relative;
         //const one = getOneDraftPictures(path_file, array);
         //const one_relative = getOneDraftPictures(path_file, array_relative);
-        /*
-        if (!fs.existsSync(DIR_MIDJOURNEY_DATAS)) {
-            fs.mkdirSync(DIR_MIDJOURNEY_DATAS, { recursive: true });
-        }
-        */
-        /*
-        const name_file = path.basename(one, ".png");
-        const name_file_formated = name_file.replace("-", " ");
-        const data = {
-            title: req.query.title,
-            types: JSON.parse(req.query.types),
-            src: `${getRelativePath(`${DIR_MIDJOURNEY_PICTURES}/${path.basename(one)}`)}`,
-            srcBase: `${getRelativePath(`${DIR_MIDJOURNEY_PICTURES}/${path.basename(one)}`)}`,
-            prompt: req.query.prompt,
-            tags: JSON.parse(req.query.tags),
-        }
-        //const destinationImage = 
-        fs.writeFileSync(`${DIR_MIDJOURNEY_DATAS}/${name_file}.json`, JSON.stringify(data, null, 2));
-        fs.copyFileSync(one, `${DIR_MIDJOURNEY_PICTURES}/${name_file}${path.extname(one)}`);
-        */
+
         //console.log("COOOPY", `${cwd()}/public/pictures/images/${path.basename(one)}`)
-        return res.status(400).json({ msg: "Error", });
+        return res.status(400).json({ msg: "Error 400", });
         //console.log("tab", tabCryptoCurrencies);
         //console.log("result", response);
     } catch (error) {
         console.log("ERROR", error);
-        return res.status(405).json({ msg: "Error", error: error });
+        return res.status(405).json({ msg: "Error 405", error: error });
     }
 
 }

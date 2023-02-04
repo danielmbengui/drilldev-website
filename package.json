@@ -20,11 +20,14 @@
     "@tensorflow/tfjs": "^4.2.0",
     "add": "^2.0.6",
     "axios": "^1.2.2",
+    "browser-fs-access": "^0.31.2",
     "cors": "^2.8.5",
     "country-flag-icons": "^1.5.5",
-    "discord.js": "^14.7.1",
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.5",
+    "ipfs-client": "^0.10.0",
+    "ipfs-core": "^0.18.0",
+    "ipfs-http-client": "^60.0.0",
     "material-ui-popup-state": "^5.0.4",
     "next": "13.1.5",
     "next-i18next": "^13.0.2",
@@ -39,6 +42,23 @@
     "yarn": "^1.22.19"
   },
   "devDependencies": {
-    "@types/node": "^18.11.18"
-  }
+    "@types/node": "^18.11.18",
+    "webpack": "^5.75.0"
+  },
+  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "main": "constants.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielmbengui/drilldev-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielmbengui/drilldev-website/issues"
+  },
+  "homepage": "https://github.com/danielmbengui/drilldev-website#readme"
 }

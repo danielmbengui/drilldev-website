@@ -10,9 +10,10 @@ import { useMediaQuery } from "../../styles/useMediaQuery";
 import Image from "next/image.js";
 import { useTranslation } from "next-i18next";
 import { updateLangageStorage } from "@/lib/storage/UserStorageFunctions.js";
-import { NAMESPACE_LANGAGE_COMMON, PAGE_LINK_GALLERY, PAGE_LINK_HOME, PAGE_LINK_TUTORIAL, PAGE_LINK_TUTORIAL_MIDJOURNEY } from "@/constants.js";
+import { NAMESPACE_LANGAGE_COMMON, PAGE_LINK_GALLERY, PAGE_LINK_HOME, PAGE_LINK_TUTORIAL, PAGE_LINK_TUTORIAL_DRILL_DEV, PAGE_LINK_TUTORIAL_MIDJOURNEY, WEBSITE_NAME } from "@/constants.js";
 import { useRouter } from "next/router.js";
 import { ChevronDownIcon, icons } from "../Customs/Icons.js";
+import { myLoader } from "@/lib/ImageLoader.js";
 //const logoLightTheme = "/images/logos/logo_black_light_complete_no_back.png";
 //const logoDarkTheme = "/images/logos/logo_white_dark_complete_no_back.png";
 //const logoLightTheme = "/images/logos/logo_original_light_complete_no_back.png";
@@ -64,8 +65,30 @@ export default function NavbarComponent(props) {
       href: PAGE_LINK_TUTORIAL,
       subtitle: [
         {
+          name: WEBSITE_NAME,
+          href: PAGE_LINK_TUTORIAL_DRILL_DEV,
+          icon: <Image 
+            src={`/images/logos/logo_${isDark ? 'white' : 'black'}_pic_no_back.png`}
+            alt={`icon ${WEBSITE_NAME}`}
+            width={40}
+            height={40}
+            loader={myLoader}
+            priority
+            quality={100}
+          />,
+        },
+        {
           name: 'Midjourney',
           href: PAGE_LINK_TUTORIAL_MIDJOURNEY,
+          icon: <Image 
+            src={`/images/logos/others/midjourney.png`}
+            alt={`icon ${WEBSITE_NAME}`}
+            width={35}
+            height={35}
+            loader={myLoader}
+            priority
+            quality={100}
+          />,
         }
       ]
     }
@@ -83,14 +106,19 @@ export default function NavbarComponent(props) {
   ];
 
   const handleSubtitle = (e) => {
+    const value = e.values().next().value;
     console.log("LIIINK", e.values().next().value)
     //setSubtitleSelected(e);
-    router.push(e.values().next().value);
+    if (value) {
+      setSubtitleSelected(e);
+      router.push(value);
+    }
   }
 
 
   const MenuItemComponent = (props) => {
     const { menu, index } = props;
+    
     if (menu.subtitle) {
       return (
       <Dropdown isBordered
@@ -150,7 +178,7 @@ export default function NavbarComponent(props) {
                   //ref={refSubtitle}
                   showFullDescription
                   description="ACME scales apps to meet user demand, automagically, based on load."
-                  icon={icons.scale}
+                  icon={item.icon}
                   isActive={true}
                   as={`a`}
                   href={`/`}
@@ -161,47 +189,15 @@ export default function NavbarComponent(props) {
                     bg: router.asPath.includes(item.href) ? '$primary' : '',
                   }}
                 >
-                  Midjourney
+                  {item.name}
                 </Dropdown.Item>
               )
             })
           }
-          <Dropdown.Item
-            key="autoscaling"
-            showFullDescription
-            description="ACME scales apps to meet user demand, automagically, based on load."
-            icon={icons.scale}
-            isActive={true}
-            as={`a`}
-            href={`/`}
-            onPress={() => {
-              console.log("Click midjourney")
-            }}
-            css={{
-              bg: 'red'
-            }}
-          >
-            Midjourney
-          </Dropdown.Item>
-          <Dropdown.Item
-            key="usage_metrics"
-            showFullDescription
-            description="Real-time metrics to debug issues. Slow query added? We’ll show you exactly where."
-            icon={icons.activity}
-          >
-            Chat GPT
-          </Dropdown.Item>
-          <Dropdown.Item
-            key="production_ready"
-            showFullDescription
-            description="ACME runs on ACME, join us and others serving requests at web scale."
-            icon={icons.flash}
-          >
-            Next UI
-          </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>)
     }
+    
 
     return (
       <Navbar.Link
@@ -266,7 +262,9 @@ export default function NavbarComponent(props) {
             )
           })
         }
-        <Dropdown isBordered>
+  {
+    /*
+      <Dropdown isBordered>
           <Navbar.Item>
             <Dropdown.Button
               auto
@@ -333,6 +331,8 @@ export default function NavbarComponent(props) {
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
+    */
+  }
 
         {
           /**

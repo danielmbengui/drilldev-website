@@ -4,7 +4,7 @@ import HomeComponent from '../components/Home/HomeComponent';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { NAMESPACE_LANGAGE_COMMON, NAMESPACE_LANGAGE_HOME, TAB_LANGAGES, TAB_NAMEPACES } from '@/constants';
 import { useTranslation } from 'next-i18next';
-import ContainerPage from '@/components/Containers/ContainerPage';
+import ContainerPageComponent from '@/components/Containers/ContainerPageComponent';
 import { Text, useTheme } from '@nextui-org/react';
 import { PICTURES_HOME } from '@/__mocks__/_pictures_';
 
@@ -29,7 +29,7 @@ export default function HomePage(props) {
   const {t} = useTranslation(TAB_NAMEPACES);
 
   return (
-    <ContainerPage
+    <ContainerPageComponent
     picturesTitle={homePictures}
     sizes={sizes}
     isMobile={isMobile} isTablet={isTablet} isLaptop={isLaptop}
@@ -48,7 +48,7 @@ export default function HomePage(props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 <HomeComponent sizes={sizes} />
-    </ContainerPage>
+    </ContainerPageComponent>
   )
 }
 

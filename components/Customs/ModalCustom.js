@@ -90,7 +90,7 @@ export default function ModalCustom(props) {
                   picture.types.map((type, index) => {
                     return (
                       <Grid key={`${type} - ${index}`}>
-                        <Badge isSquared flat="true" color="primary" css={{
+                        <Badge isSquared flat color="primary" css={{
                           borderColor: isDark ? '$white' : '$black'
                         }}>{`#${type}`}</Badge>
                       </Grid>
