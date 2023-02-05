@@ -51,15 +51,17 @@ function formatTitle(link) {
 
 
 function getAllPictures() {
+    const pictures_absolute = getListPictures([], DIR_MIDJOURNEY_DRAFTS).array;
     const pictures = getListPictures([], DIR_MIDJOURNEY_DRAFTS).array_relative;
-    console.log("PIIICTU", pictures)
+    //console.log("PIIICTU", pictures)
     if (pictures.length) {
         const array = pictures.map((item, index) => {
+            //fs.renameSync(pictures_absolute[index], pictures_absolute[index].replaceAll("dambengu_", ""));
             return(
                 {
                     title:formatTitle(item),
                     src: item,
-                    src:`https://ipfs.io/ipfs/QmQ1sK9BsDPfaXMnaSWHnc8YpdiqcDrs66Tn7GdhkburR4/mid-journey/${path.basename(item)}`,
+                    src:`https://ipfs.io/ipfs/Qmc8Pvj2hU7syTZVZWNHFT8dNhZypboTon2ioL6b7V6TXf/mid-journey/${path.basename(item).replaceAll("dambengu_", "")}`,
                     types:["illustration"],
                 }
             )
@@ -87,7 +89,7 @@ export default async function handler(req, res) {
     await cors(req, res);
 
     try {
-        console.log("API", "access to the API \n");
+        //console.log("API", "access to the API \n");
         if (req.method === METHOD_GET) {
             if (req.query.action === "get_all") {
                 //console.log("GET_ALL", `${req.query.action}\n`);
