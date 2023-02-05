@@ -55,6 +55,7 @@ export async function getStaticProps({ locale }) {
     return randomPictures; // The maximum is exclusive and the minimum is inclusive
   }
 
+/*
   const ok = await axios.get(`${process.env.domain}/api/drafts`, {
     params : {
       action:'get_all'
@@ -66,11 +67,19 @@ export async function getStaticProps({ locale }) {
     //console.log("ERROR", error.message)
     return ([]);
   })
-  
+*/
+const ok = await axios.get(`https://ipfs.io/ipfs/QmViuer9UvLm4a7WBQtbC4Zo5KEhkCrEcowEC1xrDmg24p/data.json`).then((response) => {
+  console.log("RESP", response.data.length);
+  return (response.data);
+}).catch((error) => {
+  console.log("ERROR", error)
+  return ([]);
+})
+
   const data = require("../public/pictures/datas/data.json");
   return {
       props: {
-        picturesFetch: getRandomSortPictures(data),
+        picturesFetch: getRandomSortPictures(ok),
           ...(await serverSideTranslations(locale, TAB_NAMEPACES, null, TAB_LANGAGES)),
           // Will be passed to the page component as props
       },

@@ -54,6 +54,8 @@ export default function HomePage(props) {
 
 
 export async function getStaticProps({ locale }) {
+
+
   return {
       props: {
         //tabPrice: response,

@@ -13,6 +13,7 @@ import { useTranslation } from 'next-i18next';
 import { NAMESPACE_LANGAGE_COMMON } from '@/constants';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import { IPFSHTTPClient } from 'ipfs-http-client';
 
 const Label = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -35,6 +36,18 @@ function getPicturesPerPage(page = 1, pictures = []){
     return(_pictures);
 }
 
+async function displayImage() {
+  //const IPFS = require('ipfs');
+ // const IPFS = require('ipfs-http-client');
+//const ipfs = new IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' });
+  const ipfs = IPFSHTTPClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' });
+  const imageHash = "Qmc8Pvj2hU7syTZVZWNHFT8dNhZypboTon2ioL6b7V6TXf/mid-journey/Ghibli_style_Whales_Swimming_in_the_Sky_Refreshing_Sky_b9ed4ca7-b87e-4efd-828a-54df495c212e.png";
+  const imageData = await ipfs.cat(imageHash);
+  const imageUrl = URL.createObjectURL(new Blob([imageData.data], { type: "image/jpeg" }));
+  //document.getElementById("image").src = imageUrl;
+  return (imageUrl);
+}
+
 export default function ImageMasonry(props) {
   const {t} = useTranslation();
   const {isMobile, pictures} = props;
@@ -51,7 +64,14 @@ export default function ImageMasonry(props) {
   }
 
   useEffect(() => {
-    handleChangePage(managePage.page)
+    if (typeof window !== 'undefined') {
+      //console.log("IIIIMAGE", displayImage())
+      //setSrc(displayImage());
+    }
+  })
+  useEffect(() => {
+    handleChangePage(managePage.page);
+    
   }, [pictures])
 
   useEffect(() => {
@@ -80,7 +100,6 @@ export default function ImageMasonry(props) {
       initialPage={1}
       />
             </Grid>
-
       <Grid xs={12} justify='center'>
       <Masonry columns={{xs:2, sm:3, md:5}}>
 

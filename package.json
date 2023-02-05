@@ -25,6 +25,8 @@
     "country-flag-icons": "^1.5.5",
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.5",
+    "ipfs": "^0.66.0",
+    "ipfs-http-client": "^60.0.0",
     "material-ui-popup-state": "^5.0.4",
     "next": "13.1.5",
     "next-i18next": "^13.0.2",
