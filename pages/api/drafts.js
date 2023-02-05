@@ -3,8 +3,8 @@ import fs from 'fs';
 import initMiddleware from '@/lib/init-middleware';
 import { cwd } from 'process';
 import path from 'path';
-import { getListPictures, getOnePictureFromList, getRelativePath } from './constants';
-import { DIR_MIDJOURNEY_DRAFTS, METHOD_GET, METHOD_POST } from '@/constants';
+import { getFirstLetterUpperCase, getListPictures, getOnePictureFromList, getRelativePath } from './constants';
+import { DIR_MIDJOURNEY_DATAS, DIR_MIDJOURNEY_DRAFTS, METHOD_GET, METHOD_POST } from '@/constants';
 const PATH_PICTURES = `${process.cwd()}/public/datas/images/`;
 
 
@@ -16,22 +16,57 @@ const cors = initMiddleware(
     })
 )
 
+
+function writeFile(data) {
+    if (!fs.existsSync(DIR_MIDJOURNEY_DATAS)) {
+        fs.mkdirSync(DIR_MIDJOURNEY_DATAS, { recursive: true });
+    }
+    fs.writeFileSync(DIR_MIDJOURNEY_DATAS + "/data.json", JSON.stringify(data, null, 2));
+}
+
+function formatTitle(link) {
+    var last = -1;
+    var word = path.basename(link);
+    for (let i = 0; i < 4; i++) {
+        last = word.lastIndexOf("-");
+        word = word.slice(0, last);
+    }
+    last = word.lastIndexOf("_");
+    word = word.slice(0, last);
+    const result = word
+    .replaceAll("dambengu_", "")
+    .replaceAll("/", " ")
+    .replaceAll("_", " ")
+    .replaceAll("-", " ")
+    .trim()
+//console.log(str.slice(-4)); commence depuis le quatrieme depuis la fin, jusqua la fin
+// Expected output: "dog."
+
+//console.log(str.slice(-9, -5)); commence depuis le quatrieme depuis la fin, jusquau 5eme depuis la fin
+// Expected output: "lazy"
+    return(
+        getFirstLetterUpperCase(result)
+    )
+}
+
+
 function getAllPictures() {
-    const pictures = getListPictures([], DIR_MIDJOURNEY_DRAFTS);
-    /*
+    const pictures = getListPictures([], DIR_MIDJOURNEY_DRAFTS).array_relative;
+    console.log("PIIICTU", pictures)
     if (pictures.length) {
         const array = pictures.map((item, index) => {
             return(
                 {
-                    title:'',
+                    title:formatTitle(item),
                     src: item,
+                    src:`https://ipfs.io/ipfs/QmQ1sK9BsDPfaXMnaSWHnc8YpdiqcDrs66Tn7GdhkburR4/mid-journey/${path.basename(item)}`,
                     types:["illustration"],
                 }
             )
         }) 
+        writeFile(array);
         return (array);
     }
-    */
     return ([]);
 }
 
@@ -57,7 +92,7 @@ export default async function handler(req, res) {
             if (req.query.action === "get_all") {
                 //console.log("GET_ALL", `${req.query.action}\n`);
                 const array = getAllPictures();
-                //console.log("ARRAY", `${array}\n`);
+                //console.log("ARRAY", `${array.length}\n`);
                 return res.status(200).json({ msg: array.length ? "Success" : "Error", files: array, length: array.length, });
                 //return res.status(200).json({ msg: "Success", files: [], length: 0, });
             } else if (req.query.action === "get_one" && req.query.name) {

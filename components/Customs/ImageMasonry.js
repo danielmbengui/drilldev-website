@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Paper from '@mui/material/Paper';
 //import Container from '@mui/material/Container';
 
@@ -24,11 +24,43 @@ const Label = styled(Paper)(({ theme }) => ({
   borderBottomRightRadius: 0,
 }));
 
+const MAX_PIC_PER_PAGE = 200;
+
+function getPicturesPerPage(page = 1, pictures = []){
+    const _pictures = pictures.filter((item, index) => {
+      if((index >= MAX_PIC_PER_PAGE * (page - 1)) && (index < MAX_PIC_PER_PAGE * page)) {
+        return (item);
+    }
+    });
+    return(_pictures);
+}
+
 export default function ImageMasonry(props) {
   const {t} = useTranslation();
   const {isMobile, pictures} = props;
   const [picture, setPicture] = useState(null);
   const [visible, setVisible] = useState(false);
+
+  const [managePage, setManagePage] = useState({
+    page:1,
+    pictures: getPicturesPerPage(1, pictures),
+  });
+
+  const handleChangePage = (_page) => {
+    setManagePage({ page: _page, pictures: getPicturesPerPage(_page, pictures)})
+  }
+
+  useEffect(() => {
+    handleChangePage(managePage.page)
+  }, [pictures])
+
+  useEffect(() => {
+    console.log("YAAAAAA", getPicturesPerPage(managePage.page, pictures))
+    setManagePage((prev) => ({
+      ...prev,
+      pictures: getPicturesPerPage(managePage.page, pictures),
+    }))
+}, [managePage.page])
 
   return (
     <Grid.Container css={{ minHeight: 500, width:'100%',}}>
@@ -37,94 +69,103 @@ export default function ImageMasonry(props) {
               maxWidth:'fit-content'
             }}>
             <Pagination 
+            onChange={handleChangePage}
         boundaries={0}
         siblings={1}
       noMargin
       //loop
       size={'md'}
       css={{maxWidth:'100%'}}
-      total={20}
-      initialPage={4}
+      total={Math.ceil(pictures.length / MAX_PIC_PER_PAGE)}
+      initialPage={1}
       />
             </Grid>
 
       <Grid xs={12} justify='center'>
       <Masonry columns={{xs:2, sm:3, md:5}}>
 
-{pictures.map((item, index) => (
-  <div key={index} style={{
-    cursor:'pointer'
-  }}>
-    <ImageListItem>
-     <Image
-     onClick={() => {
-      setPicture(item);
-      setVisible(true);
-    }}
-      src={`${item.src}?w=162&auto=format`}
-      srcSet={`${item.src}?w=162&auto=format&dpr=2 2x`}
-      alt={item.title}
-      //loading="lazy"
-      width={500}
-      height={400}
-      style={{
-        display: 'flex',
-        width: 'auto',
-        maxWidth: '100%',
-        height:'auto',
-        maxHeight:'100%',
-        borderRadius:10
+{managePage.pictures.map((item, index) => {
+  return (
+    <div key={index} style={{
+      cursor:'pointer'
+    }}>
+      <ImageListItem>
+       <Image
+       onClick={() => {
+        setPicture(item);
+        setVisible(true);
       }}
-      loader={myLoader}
-      priority
-      quality={100}
-    />
-    <ImageListItemBar
-    title={item.title}
-    sx={{fontWeight:'bold', textAlign:'start'}}
-    //subtitle={item.prompt}
-    actionIcon={
-      <Grid.Container alignItems='center' gap={0}>
-        <Grid gap={0}>
-        <IconButton
-        sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-        aria-label={`info about ${item.title}`}
-        onClick={() => {
-          setPicture(item);
-          setVisible(true);
+        src={`${item.src}?w=162&auto=format`}
+        srcSet={`${item.src}?w=162&auto=format&dpr=2 2x`}
+        alt={item.title}
+        //loading="lazy"
+        width={500}
+        height={400}
+        style={{
+          display: 'flex',
+          width: 'auto',
+          maxWidth: '100%',
+          height:'auto',
+          maxHeight:'100%',
+          borderRadius:10
         }}
-      >
-        <VisibilityIcon  sx={{
-    color:'white',
-    ":hover": {
-      color:'var(--primary)'
-      //backgroundColor:'secondary.main'
-  }
-  }} />
-      </IconButton>
-        </Grid>
-        <Grid gap={0}>
-      <IconButton
-        sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-        aria-label={`info about ${item.title}`}
-        href={item.src}
-        download={item.src}
-      >
-        <FileDownloadIcon sx={{
-          color:'white',
-    ":hover": {
-      color:'var(--primary)'
-      //backgroundColor:'secondary.main'
-  }
-  }} />
-      </IconButton>
-        </Grid>
-      </Grid.Container>
+        loader={myLoader}
+        priority
+        quality={100}
+      />
+      <ImageListItemBar
+      title={item.title}
+      sx={{
+        fontWeight:'bold', 
+        textAlign:'start',
+        borderBottomLeftRadius:10,
+        borderBottomRightRadius:10,
+      }}
+      //subtitle={item.prompt}
+      actionIcon={
+        <Grid.Container alignItems='center' gap={0}>
+          <Grid gap={0}>
+          <IconButton
+          sx={{ 
+            color: 'rgba(255, 255, 255, 0.54)' }}
+          aria-label={`info about ${item.title}`}
+          onClick={() => {
+            setPicture(item);
+            setVisible(true);
+          }}
+        >
+          <VisibilityIcon  sx={{
+      color:'white',
+      ":hover": {
+        color:'var(--primary)'
+        //backgroundColor:'secondary.main'
     }
-  />
-    </ImageListItem>
-  </div>
-))}
+    }} />
+        </IconButton>
+          </Grid>
+          <Grid gap={0}>
+        <IconButton
+          sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+          aria-label={`info about ${item.title}`}
+          href={item.src}
+          download={item.src}
+        >
+          <FileDownloadIcon sx={{
+            color:'white',
+      ":hover": {
+        color:'var(--primary)'
+        //backgroundColor:'secondary.main'
+    }
+    }} />
+        </IconButton>
+          </Grid>
+        </Grid.Container>
+      }
+    />
+      </ImageListItem>
+    </div>
+  )
+})}
 </Masonry>
       </Grid>
       <ModalCustom 

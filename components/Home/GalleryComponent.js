@@ -16,19 +16,19 @@ const logoDarkTheme = "/images/logos/logo_orange_complete_no_back.png";
 
 //const logoLightTheme = "/images/logos/logo_black_light_complete_no_back.png";
 //const logoDarkTheme = "/images/logos/logo_white_dark_complete_no_back.png";
-const PICTURES = require("../../public/collections/data-pictures.json");
+//const PICTURES = require("../../public/collections/data-pictures.json");
 
-function getRandomSortPictures() {
+function getRandomSortPictures(_pictures = []) {
   const randomOrder = [];
   const randomPictures = [];
   const min = 0;
-  const max = PICTURES.length;
+  const max = _pictures.length;
   for (let i = 0; i < max; i++) {
     let random = Math.floor(Math.random() * (max - min) + min);
     while (randomOrder.includes(random)) {
       random = Math.floor(Math.random() * (max - min) + min);
     }
-    const element = PICTURES[random];
+    const element = _pictures[random];
     randomOrder.push(random);
     randomPictures.push(element);
   }
@@ -39,33 +39,44 @@ function getRandomSortPictures() {
 
 export default function GalleryComponent(props) {
   const {picturesFetch, lang, isMobile} = props;
+  const [filteredList, setFilteredList] = useState(picturesFetch);
+  const [search, setSearch] = useState('');
   const { isDark } = useTheme();
   const [variant, setVariant] = useState("static");
   const [srcModal, setSrcModal] = useState("");
   const [titleModal, setTitleModal] = useState("");
   const [typesModal, setTypesModal] = useState([]);
   const [picture, setPicture] = useState(null);
-  const [pictures, setPictures] = useState(PICTURES);
+  const [pictures, setPictures] = useState([
+    {
+      title:"aie 1",
+      src:"https://ipfs.io/ipfs/Qmch6wfXx3SxANUd8JorEJ5cTAzyAJUmF3q8iaatKuqTSX/astronaut/astronaut-1.png",
+      types:["illustration"]
+    },
+    {
+      title:"aie 1",
+      src:"https://ipfs.io/ipfs/Qmch6wfXx3SxANUd8JorEJ5cTAzyAJUmF3q8iaatKuqTSX/astronaut/astronaut-2.png",
+      types:["illustration"]
+    },
+    {
+      title:"Popeye",
+      src:"https://ipfs.io/ipfs/Qmch6wfXx3SxANUd8JorEJ5cTAzyAJUmF3q8iaatKuqTSX/cartoon/popeye.png",
+      types:["illustration"]
+    }
+
+    
+  ]);
 
   const variants = ["static", "floating", "sticky"];
   const [visible, setVisible] = useState(false);
   const handler = () => setVisible(true);
 
+  
   useEffect(() => {
-if (getRandomSortPictures()) {
-  //setPictures(getRandomSortPictures());
-} else {
-  //setPictures(PICTURES);
-}
-  }, [])
-
-  const closeHandler = () => {
-    setPicture(null);
-    setTitleModal("");
-    setTypesModal([]);
-    setVisible(false);
-    console.log("closed");
-  };
+    console.log("GALLLLEEERY", filteredList)
+//const empire = pilots.filter(pilot => pilot.faction === "Empire");
+  }, [search])
+  
 
   const MockItem = ({ text }) => {
     return (
@@ -88,16 +99,24 @@ if (getRandomSortPictures()) {
               color:'white',
             }}>
             <Card.Body >
-            <Input
+            <Grid container direction={'column'} alignItems='center' rowSpacing={2}>
+              <Grid item >
+              <Input
             color="primary"
             css={{
               color:'$primary',
               //background:'$accents0'
             }}
-          
+          value={search}
           //labelLeft="search" 
-          onChange={() => {
-
+          onChange={(e) => {
+            const _search = e.target.value;
+            console.log("EVENT", _search)
+            setSearch(_search);
+            const _pictures = picturesFetch.filter(picture => {
+              return(picture.title.includes(_search))
+            });
+            setFilteredList(_pictures);
           }}
           label="Search image"
           status="primary"
@@ -110,6 +129,14 @@ if (getRandomSortPictures()) {
               <SearchIcon />
             }
           />
+              </Grid>
+              <Grid item>
+                <Text h5>
+                <Text b>{`Nb : `}</Text>               
+                <Text as={'span'}>{filteredList.length}</Text>
+                </Text>
+              </Grid>
+            </Grid>
             </Card.Body>
           </Card>
         </Grid>
@@ -117,7 +144,7 @@ if (getRandomSortPictures()) {
 
     <ImageMasonry 
     isMobile={isMobile} 
-    pictures={pictures}
+    pictures={filteredList}
     />
     </Grid>
   )

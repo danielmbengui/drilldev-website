@@ -144,7 +144,7 @@ export default function DrillDevComponent(props) {
             <Text>
               {"Si vous vouler vous inscrire sur discord, veuillez cliquer sur le bouton "} <Link css={{
                 tt: 'uppercase'
-              }} isExternal target={'_blank'} href='https://discord.com/' flat>{`ici`}</Link>
+              }} isExternal target={'_blank'} href='https://discord.com/'>{`ici`}</Link>
             </Text>
             <Text>
               <Link target={'_blank'} href={`https://support.discord.com/hc/${lang}/articles/360033931551-Getting-Started`} isExternal>{`comment créer un compte ? `}</Link>
@@ -158,7 +158,7 @@ export default function DrillDevComponent(props) {
           >
             <Text>
               {`Vous voulez générer des images en intelligence artificielle, rejoingez le `}
-              <Link as={'a'} isExternal target={'_blank'} href='https://discord.gg/vfTQAQPWwp' flat>{`Serveur DrillDev`}</Link>
+              <Button as={'a'} isExternal target={'_blank'} href='https://discord.gg/vfTQAQPWwp' flat>{`Serveur DrillDev`}</Button>
 
             </Text>
             <Text>

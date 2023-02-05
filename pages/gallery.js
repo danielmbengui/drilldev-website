@@ -37,7 +37,25 @@ export default function GalleryPage(props) {
 }
 
 export async function getStaticProps({ locale }) {
-  const data = await axios.get(`${process.env.domain}/api/drafts`, {
+  function getRandomSortPictures(_pictures) {
+    const randomOrder = [];
+    const randomPictures = [];
+    const min = 0;
+    const max = _pictures.length;
+    for (let i = 0; i < max; i++) {
+      let random = Math.floor(Math.random() * (max - min) + min);
+      while (randomOrder.includes(random)) {
+        random = Math.floor(Math.random() * (max - min) + min);
+      }
+      const element = _pictures[random];
+      randomOrder.push(random);
+      randomPictures.push(element);
+    }
+  
+    return randomPictures; // The maximum is exclusive and the minimum is inclusive
+  }
+
+  const ok = await axios.get(`${process.env.domain}/api/drafts`, {
     params : {
       action:'get_all'
     }
@@ -48,9 +66,11 @@ export async function getStaticProps({ locale }) {
     //console.log("ERROR", error.message)
     return ([]);
   })
+  
+  const data = require("../public/pictures/datas/data.json");
   return {
       props: {
-        picturesFetch: data,
+        picturesFetch: getRandomSortPictures(data),
           ...(await serverSideTranslations(locale, TAB_NAMEPACES, null, TAB_LANGAGES)),
           // Will be passed to the page component as props
       },
