@@ -114,7 +114,7 @@ export default function GalleryComponent(props) {
             console.log("EVENT", _search)
             setSearch(_search);
             const _pictures = picturesFetch.filter(picture => {
-              return(picture.title.includes(_search))
+              return(picture.title.toLowerCase().includes(_search.toLowerCase()))
             });
             setFilteredList(_pictures);
           }}
