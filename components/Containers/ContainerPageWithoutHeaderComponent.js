@@ -29,60 +29,21 @@ function getRandomPicture(_pictures) {
 }
 
 export default function ContainerPageWithoutHeaderComponent(props) {
-  const {t, i18n,} = useTranslation();
-  const router = useRouter()
-  const { isDark } = useTheme();
-  const { children, title, picturesTitle, pages, lang, setLang, sizes, isMobile, isLaptop, } = props;
-  const [src, setSrc] = useState(null);
-  useEffect(() => {
-    if (picturesTitle && picturesTitle.length > 0) {
-      setSrc(getRandomPicture(picturesTitle).src);
-    } else {
-      setSrc(getRandomPicture(PICTURES).src)
-    }
+  const { children, pages, lang, setLang, sizes,  } = props;
 
-  }, [])
-
-  const handleChange = () => {
-    const nextTheme = isDark ? 'light' : 'dark';
-    window.localStorage.setItem('data-theme', nextTheme); // you can use any storage
-    changeTheme(nextTheme);
-  }
-
-  const onChangeLanguage = (_lang) => {
-    setLang(_lang);
-    i18n.changeLanguage(_lang);
-    updateLangageStorage(_lang);
-    //handleClose();
-    console.log("onChangeLanguage NavbarComponent", _lang)
-  };
-
-  const menuItems = [
-    {
-      name: t('menuGallery', { ns: NAMESPACE_LANGAGE_COMMON }),
-      href: PAGE_LINK_GALLERY,
-    },
-    {
-      name: t('menuTutorial', { ns: NAMESPACE_LANGAGE_COMMON }),
-      href: PAGE_LINK_TUTORIAL,
-    }
-  ];
 
   return (
-    <Layout padding={10}>
+    <Layout padding={20}>
       <NavbarComponent
         lang={lang} setLang={setLang}
         variant={"floating"}
         activeColorContent={"primary"}
         variantContent={"highlight-rounded"}
-        pages={pages}a
+        pages={pages}
         sizes={sizes}        
       />
       <Container>
       {children}
-      </Container>
-      <Container>
-        <FooterComponent />
       </Container>
     </Layout>
   )

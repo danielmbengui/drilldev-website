@@ -66,6 +66,7 @@ export default function NavbarComponent(props) {
       subtitle: [
         {
           name: WEBSITE_NAME,
+          description:"Découvrez les outils utilisés pour créer le site internet",
           href: PAGE_LINK_TUTORIAL_DRILL_DEV,
           icon: <Image 
             src={`/images/logos/logo_${isDark ? 'white' : 'black'}_pic_no_back.png`}
@@ -79,6 +80,7 @@ export default function NavbarComponent(props) {
         },
         {
           name: 'Midjourney',
+          description:"Apprenez à générer des images avec l'intelligence artificielle (IA).",
           href: PAGE_LINK_TUTORIAL_MIDJOURNEY,
           icon: <Image 
             src={`/images/logos/others/midjourney.png`}
@@ -177,7 +179,7 @@ export default function NavbarComponent(props) {
                   key={item.href}
                   //ref={refSubtitle}
                   showFullDescription
-                  description="ACME scales apps to meet user demand, automagically, based on load."
+                  description={item.description}
                   icon={item.icon}
                   isActive={true}
                   as={`a`}

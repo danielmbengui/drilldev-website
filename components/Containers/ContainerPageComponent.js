@@ -159,9 +159,6 @@ export default function ContainerPageComponent(props) {
       <Container>
       {children}
       </Container>
-      <Container>
-        <FooterComponent />
-      </Container>
     </Layout>
   )
 }

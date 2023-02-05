@@ -25,7 +25,7 @@ export default function FooterComponent(props) {
   const { t, i18n, } = useTranslation();
   const router = useRouter()
   const { isDark } = useTheme();
-  const { children, title, picturesTitle, pages, lang, setLang, sizes, isMobile, isLaptop, } = props;
+  const { picturesTitle, } = props;
   const [src, setSrc] = useState(null);
   useEffect(() => {
     if (picturesTitle && picturesTitle.length > 0) {
@@ -36,30 +36,6 @@ export default function FooterComponent(props) {
 
   }, [])
 
-  const handleChange = () => {
-    const nextTheme = isDark ? 'light' : 'dark';
-    window.localStorage.setItem('data-theme', nextTheme); // you can use any storage
-    changeTheme(nextTheme);
-  }
-
-  const onChangeLanguage = (_lang) => {
-    setLang(_lang);
-    i18n.changeLanguage(_lang);
-    updateLangageStorage(_lang);
-    //handleClose();
-    console.log("onChangeLanguage NavbarComponent", _lang)
-  };
-
-  const menuItems = [
-    {
-      name: t('menuGallery', { ns: NAMESPACE_LANGAGE_COMMON }),
-      href: PAGE_LINK_GALLERY,
-    },
-    {
-      name: t('menuTutorial', { ns: NAMESPACE_LANGAGE_COMMON }),
-      href: PAGE_LINK_TUTORIAL,
-    }
-  ];
 
   return (
     <Container maxWidth={'5000px'} sx={{
@@ -69,19 +45,21 @@ export default function FooterComponent(props) {
       width: '100%',
       textAlign: 'center',
       background:'transparent',
-      background:'red',
       //p:30,
       mt: { xs: 5, md: 10 },
     }}>
-      <Grid.Container css={{ mb: 10,}} justify="center">
+      <Grid.Container justify="center">
         <Grid xs={12} sm={4} justify="center" alignItems="center" >
         <Card css={{ width: 'fit-content', background:'$accents0', opacity:0.9}}>
           <Card.Body >
             <Grid.Container justify="center" css={{textAlign:'center'}}>
-              <Grid css={{mb:5}}>
-                  <Text h4>{`Rejoins la communauté ${WEBSITE_NAME}`}</Text>
+              <Grid xs={12} justify='center'>
+                  <Text h3>{`Rejoins la communauté`}</Text>
                 </Grid>
-              <Grid.Container justify="center" gap={1}>
+                <Grid xs={12} justify='center' css={{mb:5}}>
+                  <Text h3>{`${WEBSITE_NAME}`}</Text>
+                </Grid>
+              <Grid.Container xs={12} justify="center" gap={1}>
                 <Grid justify="center" >
                   <Link target={'_blank'} href={`https://tiktok.com`}>
                   <Image
@@ -117,23 +95,6 @@ export default function FooterComponent(props) {
                   </Link>
                 </Grid>
                 <Grid justify="center">
-                  <Link target={'_blank'} href={`https://youtube.com`}>
-                  <Image
-                    src='/images/logos/others/youtube.png'
-                    alt={`logo Drill Dev`}
-                    width={50}
-                    height={50}
-                    style={{
-                      maxWidth: '100%',
-                      maxHeight: '100%',
-                    }}
-                    loader={myLoader}
-                    priority
-                    quality={100}
-                  />
-                  </Link>
-                </Grid>
-                <Grid justify="center">
                   <Link target={'_blank'} href={`https://twitter.com`}>
                   <Image
                     src='/images/logos/others/twitter.png'
@@ -150,19 +111,40 @@ export default function FooterComponent(props) {
                   />
                   </Link>
                 </Grid>
+                <Grid justify="center">
+                  <Link target={'_blank'} href={`https://youtube.com`}>
+                  <Image
+                    src='/images/logos/others/youtube.png'
+                    alt={`logo Drill Dev`}
+                    width={50}
+                    height={50}
+                    style={{
+                      maxWidth: '100%',
+                      maxHeight: '100%',
+                    }}
+                    loader={myLoader}
+                    priority
+                    quality={100}
+                  />
+                  </Link>
+                </Grid>
+
               </Grid.Container>
             </Grid.Container>
-          </Card.Body>
-        </Card>
-        </Grid>
-      </Grid.Container>
-      <Grid.Container justify="center">
-        <Grid>
+            <Grid.Container justify="center" css={{mt:70}}>
+        <Grid xs={12} justify='center'>
           <Text>© {new Date().getFullYear()} DrillDdev</Text>
+        </Grid>
+        <Grid xs={12} justify='center'>
           <Text>
             All Rights Reserved.</Text>
         </Grid>
       </Grid.Container>
+          </Card.Body>
+        </Card>
+        </Grid>
+      </Grid.Container>
+
     </Container>
   )
 }

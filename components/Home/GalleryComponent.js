@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Layout } from "../Containers/Layout.js";
 import NavbarComponent from "../Navbar/NavbarComponent.js";
-import { Container, Card, Text, Link, Grid, Avatar, useTheme, Input } from "@nextui-org/react";
+import { Card, Text, Link, Avatar, useTheme, Input, Pagination } from "@nextui-org/react";
 import { Image } from "@nextui-org/react";
 import ImageMasonry from "../Customs/ImageMasonry.js";
 import ContainerPageComponent from "../Containers/ContainerPageComponent.js";
 import SearchIcon from '@mui/icons-material/Search';
+import { Container, Grid } from "@mui/material";
 
 const logoLightTheme = "/images/logos/logo_orange_complete_no_back.png";
 const logoDarkTheme = "/images/logos/logo_orange_complete_no_back.png";
@@ -44,7 +45,7 @@ export default function GalleryComponent(props) {
   const [titleModal, setTitleModal] = useState("");
   const [typesModal, setTypesModal] = useState([]);
   const [picture, setPicture] = useState(null);
-  const [pictures, setPictures] = useState(picturesFetch);
+  const [pictures, setPictures] = useState(PICTURES);
 
   const variants = ["static", "floating", "sticky"];
   const [visible, setVisible] = useState(false);
@@ -79,10 +80,9 @@ if (getRandomSortPictures()) {
   };
 
   return (
-    <Container lg css={{ textAlign: 'center', mt:80, }}>
-
-<Grid.Container gap={4} justify={'center'}>
-        <Grid justify="center">
+<Grid container justifyContent={'center'}>
+    <Grid container justifyContent={'center'} sx={{mb:3}}>
+        <Grid item>
           <Card css={{
               background:'$accents0',
               color:'white',
@@ -113,11 +113,12 @@ if (getRandomSortPictures()) {
             </Card.Body>
           </Card>
         </Grid>
-        </Grid.Container>
+</Grid>
+
     <ImageMasonry 
     isMobile={isMobile} 
     pictures={pictures}
     />
-  </Container>
+    </Grid>
   )
 }

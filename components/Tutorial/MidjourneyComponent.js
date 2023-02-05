@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { NAMESPACE_LANGAGE_COMMON, NAMESPACE_LANGAGE_HOME, TAB_LANGAGES, TAB_NAMEPACES } from '@/constants';
+import { NAMESPACE_LANGAGE_COMMON, NAMESPACE_LANGAGE_HOME, TAB_LANGAGES, TAB_NAMEPACES, WEBSITE_NAME } from '@/constants';
 import { useTranslation } from 'next-i18next';
 import ContainerPageComponent from '@/components/Containers/ContainerPageComponent';
 import { Button, Card, Collapse, Grid, Link, Modal, Text, useTheme } from '@nextui-org/react';
@@ -16,6 +16,7 @@ import useSWR from 'swr';
 import Script from 'next/script';
 import ContainerPageWithoutHeaderComponent from '@/components/Containers/ContainerPageWithoutHeaderComponent';
 import { Pagination } from "@nextui-org/react";
+import { myLoader } from '@/lib/ImageLoader';
 
 
 
@@ -43,6 +44,41 @@ export default function MidjourneyComponent(props) {
 
   return (
     <Grid.Container xs={12} justify='center' alignItems='center' direction='column' >
+      <Grid.Container css={{ mb: 10,}} justify="center">
+        <Grid xs={12} sm={4} justify="center" alignItems="center" >
+        <Card css={{ width: 'fit-content', background:'$accents0', opacity:0.9}}>
+          <Card.Body >
+          <Grid.Container xs={12} justify="center" gap={1} css={{mb:10}}>
+                <Grid justify="center" >
+                <Image
+                    src='/images/logos/others/midjourney.png'
+                    alt={`logo Drill Dev`}
+                    width={150}
+                    height={150}
+                    style={{
+                      maxWidth: '100%',
+                      maxHeight: '100%',
+                    }}
+                    loader={myLoader}
+                    priority
+                    quality={100}
+                  />
+                </Grid>
+              </Grid.Container>
+            <Grid.Container justify="center" alignItems='center' css={{textAlign:'center'}}>
+              <Grid xs={12} justify='center' alignItems='center'>
+                  <Text as='span' h4 b>{`Données fournies par Midjourney.`}</Text>
+              </Grid>
+              <Grid xs={12} justify='center'>
+                <Text b h4>
+                <Link href='https://docs.midjourney.com/docs' target={'_blank'} isExternal>{`Explorer la documentation.`}</Link>
+                </Text>
+              </Grid>
+            </Grid.Container>
+          </Card.Body>
+        </Card>
+        </Grid>
+      </Grid.Container>
       <Grid xs={12} sm={6} justify='center' alignItems='center' css={{
         mx: 'auto',
       }}>
@@ -50,6 +86,52 @@ export default function MidjourneyComponent(props) {
           //maxWidth:'max-content'
           //background:'$accents0'
         }}>
+          <Collapse css={{
+        background:'$accents0',
+        opacity:0.95
+          }} title="Les règles" subtitle="Tout ce qui concerne les droits d'auteurs de vos créations">
+          <Grid.Container xs={12} justify="center" alignItems="center" css={{
+        mx: 'auto',
+        //bg:'red'
+      }}>
+       <Grid>
+       <Card css={{ 
+        mx: 'auto',
+        bg:'$accents0',
+        //opacity:0.95
+        }}>
+          <Card.Body css={{
+            textAlign: 'center',
+          }}>
+            <Text>
+              <Text as={'span'}>
+                {`En ce qui concerne les droits d'auteur des photos générées, si elles proviennent du `}
+              </Text>
+              <Link href='https://discord.gg/vfTQAQPWwp' target={'_blank'} isExternal>
+                {`Serveur Drill Dev`}
+              </Link>
+              <Text as={'span'}>
+                {` , celles-ci vous appartiennent.`}
+              </Text>
+              <Text as={'span'}>
+              {` Toutes les infos trouvées sur ce tutoriel proviennent du site internet officiel de `}
+              <Link target={'_blank'} isExternal href={`https://docs.midjourney.com/docs`}>{`Midjourney`}</Link>
+            </Text>
+
+            <Text as={'span'}>
+              {`Nous ne sommes en aucun cas affilié, partenaire commercial, ni toute autre relation avec Midjourney.`}
+            </Text>
+            <Text as={'span'}>
+              {`Si vous décidez de générer vos créations par le biais du serveur de Midjourney, veuillez vous référez à leurs `}
+              <Link href='https://docs.midjourney.com/docs/terms-of-service' isExternal target={'_blank'}>{`termes de services`}</Link>
+            </Text>
+            </Text>
+          </Card.Body>
+        </Card>
+       </Grid>
+      </Grid.Container>
+
+          </Collapse>
           <Collapse title="Discord" subtitle="Se connecter/Créer un compte">
             <Text>
               {"Pour pouvoir générer des images gratuitement et simplement, vous devez d'abord posséder un compte discord."}
@@ -185,45 +267,7 @@ export default function MidjourneyComponent(props) {
         </Collapse.Group>
       </Grid>
 
-      <Grid xs={12} sm={6} justify="center" alignItems="center" css={{
-        mx: 'auto',
-      }}>
-        <Card css={{ width: 'fit-content', mx: 10, }}>
-          <Card.Body css={{
-            textAlign: 'center',
-            width: 'fit-content'
-          }}>
-            <Text>
-              <Text as={'span'}>
-                {`En ce qui concerne les droits d'auteur des photos générées, si elles proviennent du `}
-              </Text>
-              <Link href='https://discord.gg/vfTQAQPWwp' target={'_blank'} isExternal>
-                {`Serveur Drill Dev`}
-              </Link>
-              <Text as={'span'}>
-                {` , celles-ci vous appartiennent.`}
-              </Text>
-              <Text as={'span'}>
-              {` Toutes les infos trouvées sur ce tutoriel proviennent du site internet officiel de `}
-              <Link target={'_blank'} isExternal href={`https://docs.midjourney.com/docs`}>{`Midjourney`}</Link>
-            </Text>
 
-            <Text as={'span'}>
-              {`Nous ne sommes en aucun cas affilié, partenaire commercial, ni toute autre relation avec Midjourney.`}
-            </Text>
-            <Text as={'span'}>
-              {`Si vous décidez de générer vos créations par le biais du serveur de Midjourney, veuillez vous référez à leurs `}
-              <Link href='https://docs.midjourney.com/docs/terms-of-service' isExternal target={'_blank'}>{`termes de services`}</Link>
-            </Text>
-            </Text>
-
-
-            
-
-            
-          </Card.Body>
-        </Card>
-      </Grid>
 
     </Grid.Container>
   )

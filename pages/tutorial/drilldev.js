@@ -18,16 +18,12 @@ import Script from 'next/script';
 import { Pagination } from "@nextui-org/react";
 import MidjourneyComponent from '@/components/Tutorial/MidjourneyComponent';
 import ContainerPageWithoutHeaderComponent from '@/components/Containers/ContainerPageWithoutHeaderComponent';
-
-
-
-
-
+import DrillDevComponent from '@/components/Tutorial/DrillDevComponent';
 
 //const fetcher = (...args) => fetch(...args).then((res) => res.json())
 const fetcher = url => axios.get(url).then(res => res.data)
 
-export default function MidjourneyPage(props) {
+export default function DrillDevPage(props) {
     const { data, error } = useSWR('/api/drafts?action=get_all', fetcher)
 
     const { isDark } = useTheme();
@@ -50,7 +46,7 @@ export default function MidjourneyPage(props) {
         <meta name="description" content="Bienvenue sur notre site consacré à la démonstration d'illustrations générées par intelligence artificielle. Nous vous montrons les dernières tendances et techniques de génération d'images à l'aide de l'IA. Vous découvrirez les meilleures plateformes et outils pour créer vos propres illustrations de qualité, ainsi que les mots clés à utiliser pour optimiser les résultats. Suivez notre guide étape par étape pour créer vos propres illustrations surprenantes avec l'IA. Rejoignez notre communauté pour partager vos créations et découvrir celles des autres utilisateurs." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>
-        <MidjourneyComponent
+        <DrillDevComponent
 lang={lang}
 setLang={setLang}
 isMobile={isMobile}

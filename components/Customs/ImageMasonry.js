@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 //import Container from '@mui/material/Container';
 
 import Masonry from '@mui/lab/Masonry';
 import { styled } from '@mui/material/styles';
 import ModalCustom from './ModalCustom';
-import {Container,Grid, Card, Text, Button, Row, Link } from '@nextui-org/react';
+import {Container,Grid, Card, Text, Button, Row, Link, Pagination } from '@nextui-org/react';
 import Image from 'next/image';
 import { myLoader } from '@/lib/ImageLoader';
 import { IconButton, ImageListItem, ImageListItemBar, ListSubheader } from '@mui/material';
@@ -32,94 +31,108 @@ export default function ImageMasonry(props) {
   const [visible, setVisible] = useState(false);
 
   return (
-    <Box maxWidth={"xl"} sx={{ minHeight: 500 }}>
-            <ImageListItem key="Subheader" cols={2}>
-        <ListSubheader component="div">{t('menuGallery', {ns:NAMESPACE_LANGAGE_COMMON})}</ListSubheader>
-      </ImageListItem>
-      <Masonry columns={{xs:2, sm:3, md:4}} spacing={1}>
+    <Grid.Container css={{ minHeight: 500, width:'100%',}}>
+            <Grid xs={12} justify='center' css={{
+              mb:30,
+              maxWidth:'fit-content'
+            }}>
+            <Pagination 
+        boundaries={0}
+        siblings={1}
+      noMargin
+      //loop
+      size={'md'}
+      css={{maxWidth:'100%'}}
+      total={20}
+      initialPage={4}
+      />
+            </Grid>
 
-        {pictures.map((item, index) => (
-          <div key={index} style={{
-            cursor:'pointer'
-          }}>
-            <ImageListItem>
-             <Image
-             onClick={() => {
-              setPicture(item);
-              setVisible(true);
-            }}
-              src={`${item.src}?w=162&auto=format`}
-              srcSet={`${item.src}?w=162&auto=format&dpr=2 2x`}
-              alt={item.title}
-              //loading="lazy"
-              width={300}
-              height={300}
-              style={{
-                display: 'block',
-                width: 'auto',
-                maxWidth: '100%',
-                height:'auto',
-                maxHeight:'100%',
-                borderRadius:10
-              }}
-              loader={myLoader}
-              priority
-              quality={100}
-            />
-            <ImageListItemBar
-            title={item.title}
-            sx={{fontWeight:'bold', textAlign:'start'}}
-            //subtitle={item.prompt}
-            actionIcon={
-              <Grid.Container alignItems='center' gap={0}>
-                <Grid gap={0}>
-                <IconButton
-                sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-                aria-label={`info about ${item.title}`}
-                onClick={() => {
-                  setPicture(item);
-                  setVisible(true);
-                }}
-              >
-                <VisibilityIcon  sx={{
-            color:'white',
-            ":hover": {
-              color:'var(--primary)'
-              //backgroundColor:'secondary.main'
-          }
-          }} />
-              </IconButton>
-                </Grid>
-                <Grid gap={0}>
-              <IconButton
-                sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-                aria-label={`info about ${item.title}`}
-                href={item.src}
-                download={item.src}
-              >
-                <FileDownloadIcon sx={{
-                  color:'white',
-            ":hover": {
-              color:'var(--primary)'
-              //backgroundColor:'secondary.main'
-          }
-          }} />
-              </IconButton>
-                </Grid>
-              </Grid.Container>
-            }
-          />
-            </ImageListItem>
-          </div>
-        ))}
-      </Masonry>
+      <Grid xs={12} justify='center'>
+      <Masonry columns={{xs:2, sm:3, md:5}}>
+
+{pictures.map((item, index) => (
+  <div key={index} style={{
+    cursor:'pointer'
+  }}>
+    <ImageListItem>
+     <Image
+     onClick={() => {
+      setPicture(item);
+      setVisible(true);
+    }}
+      src={`${item.src}?w=162&auto=format`}
+      srcSet={`${item.src}?w=162&auto=format&dpr=2 2x`}
+      alt={item.title}
+      //loading="lazy"
+      width={500}
+      height={400}
+      style={{
+        display: 'flex',
+        width: 'auto',
+        maxWidth: '100%',
+        height:'auto',
+        maxHeight:'100%',
+        borderRadius:10
+      }}
+      loader={myLoader}
+      priority
+      quality={100}
+    />
+    <ImageListItemBar
+    title={item.title}
+    sx={{fontWeight:'bold', textAlign:'start'}}
+    //subtitle={item.prompt}
+    actionIcon={
+      <Grid.Container alignItems='center' gap={0}>
+        <Grid gap={0}>
+        <IconButton
+        sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+        aria-label={`info about ${item.title}`}
+        onClick={() => {
+          setPicture(item);
+          setVisible(true);
+        }}
+      >
+        <VisibilityIcon  sx={{
+    color:'white',
+    ":hover": {
+      color:'var(--primary)'
+      //backgroundColor:'secondary.main'
+  }
+  }} />
+      </IconButton>
+        </Grid>
+        <Grid gap={0}>
+      <IconButton
+        sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+        aria-label={`info about ${item.title}`}
+        href={item.src}
+        download={item.src}
+      >
+        <FileDownloadIcon sx={{
+          color:'white',
+    ":hover": {
+      color:'var(--primary)'
+      //backgroundColor:'secondary.main'
+  }
+  }} />
+      </IconButton>
+        </Grid>
+      </Grid.Container>
+    }
+  />
+    </ImageListItem>
+  </div>
+))}
+</Masonry>
+      </Grid>
       <ModalCustom 
       isMobile={isMobile}
       picture={picture}
       visible={visible} setVisible={setVisible}
-
       />
-    </Box>
+    </Grid.Container>
   );
 }
 

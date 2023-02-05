@@ -9,8 +9,10 @@ import { useTranslation } from 'next-i18next';
 import { Button, Image, Link, Text, useTheme } from '@nextui-org/react';
 import ContainerPageComponent from '@/components/Containers/ContainerPageComponent';
 import ContainerPageWithoutHeaderComponent from '@/components/Containers/ContainerPageWithoutHeaderComponent';
+import { useRouter } from 'next/router';
 
 const NotFoundPage = (props) => {
+  const router = useRouter();
   const {lang, setLang} = props;
   const {isDark} = useTheme();
   const { t, i18n} = useTranslation([NAMESPACE_LANGAGE_404, NAMESPACE_LANGAGE_COMMON])
@@ -87,18 +89,16 @@ useEffect(() => {
                 height={'100%'}
               />
             </Box>
-            <Link
-              href={PAGE_LINK_HOME}
-              //passHref
-              //legacyBehavior
-            >
-              <Button
+            <Button
                 //component="a"
                 size="lg"
-                shadow
+                //shadow
                 icon={(<ArrowBackIcon fontSize="small" />)}
                // variant="contained"
                 flat
+                onPress={() => {
+                    router.back();
+                }}
                 css={{
                   mt:3,
                   textTransform:"uppercase",
@@ -106,9 +106,8 @@ useEffect(() => {
                   //backgroundColor:'secondary.main'
               }}}
               >
-                {`${t('back_to_dasboard')}`}
+                {`Retour`}
               </Button>
-            </Link>
           </Box>
         </Container>
       </Box>

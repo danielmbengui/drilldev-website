@@ -236,7 +236,6 @@ textComponent={<Container justify="center" css={{
           </Text>
           <Text h3>
             {"Cela m'a permis de générer des versions variées de ces images, chacune avec des caractéristiques uniques."}
-
           </Text>
           <Text h3 color="$text">{"C'était intéressant de voir comment l'IA pouvait interpréter et altérer mon image de différentes manières."}</Text>
           <Text h3 color="$text">{"Je suis impressionné par les résultats obtenus et je suis impatient de découvrir d'autres utilisations de l'IA dans le traitement d'images."}</Text>
