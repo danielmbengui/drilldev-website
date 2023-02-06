@@ -68,18 +68,20 @@ export async function getStaticProps({ locale }) {
     return ([]);
   })
 */
-const ok = await axios.get(`https://ipfs.io/ipfs/QmViuer9UvLm4a7WBQtbC4Zo5KEhkCrEcowEC1xrDmg24p/data.json`).then((response) => {
-  console.log("RESP", response.data.length);
+/*
+const ok = await axios.get(`https://pictures.drilldev.com/datas/data.json`).then((response) => {
+  console.log("RESP", response.data);
   return (response.data);
 }).catch((error) => {
   console.log("ERROR", error)
   return ([]);
 })
+*/
 
   const data = require("../public/pictures/datas/data.json");
   return {
       props: {
-        picturesFetch: getRandomSortPictures(ok),
+        picturesFetch: data,
           ...(await serverSideTranslations(locale, TAB_NAMEPACES, null, TAB_LANGAGES)),
           // Will be passed to the page component as props
       },

@@ -60,26 +60,28 @@ export default function ImageMasonry(props) {
   });
 
   const handleChangePage = (_page) => {
-    setManagePage({ page: _page, pictures: getPicturesPerPage(_page, pictures)})
+    setManagePage((prev) => ({
+      ...prev,
+      page: _page,
+      pictures: getPicturesPerPage(_page, pictures),
+    }))
   }
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      //console.log("IIIIMAGE", displayImage())
-      //setSrc(displayImage());
-    }
-  })
-  useEffect(() => {
-    handleChangePage(managePage.page);
-    
-  }, [pictures])
-
   useEffect(() => {
     console.log("YAAAAAA", getPicturesPerPage(managePage.page, pictures))
     setManagePage((prev) => ({
       ...prev,
       pictures: getPicturesPerPage(managePage.page, pictures),
     }))
+  }, [pictures])
+
+  useEffect(() => {
+    /*
+    console.log("YAAAAAA", getPicturesPerPage(managePage.page, pictures))
+    setManagePage((prev) => ({
+      ...prev,
+      pictures: getPicturesPerPage(managePage.page, pictures),
+    }))
+    */
 }, [managePage.page])
 
   return (
@@ -114,8 +116,8 @@ export default function ImageMasonry(props) {
         setPicture(item);
         setVisible(true);
       }}
-        src={`${item.src}?w=162&auto=format`}
-        srcSet={`${item.src}?w=162&auto=format&dpr=2 2x`}
+        src={`${item.src}`}
+        srcSet={`${item.src}`}
         alt={item.title}
         //loading="lazy"
         width={500}

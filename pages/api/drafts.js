@@ -61,7 +61,8 @@ function getAllPictures() {
                 {
                     title:formatTitle(item),
                     src: item,
-                    src:`https://ipfs.io/ipfs/Qmc8Pvj2hU7syTZVZWNHFT8dNhZypboTon2ioL6b7V6TXf/mid-journey/${path.basename(item).replaceAll("dambengu_", "")}`,
+                    src:`https://pictures.drilldev.com/images/midjourney/${path.basename(item).replaceAll("dambengu_", "")}`,
+                    //src:`https://ipfs.io/ipfs/Qmc8Pvj2hU7syTZVZWNHFT8dNhZypboTon2ioL6b7V6TXf/mid-journey/${path.basename(item).replaceAll("dambengu_", "")}`,
                     types:["illustration"],
                 }
             )
