@@ -38,7 +38,7 @@ function getRandomSortPictures(_pictures = []) {
 
 
 export default function GalleryComponent(props) {
-  const {picturesFetch, lang, isMobile} = props;
+  const { picturesFetch, lang, isMobile } = props;
   const [filteredList, setFilteredList] = useState(picturesFetch);
   const [search, setSearch] = useState('');
   const { isDark } = useTheme();
@@ -49,34 +49,38 @@ export default function GalleryComponent(props) {
   const [picture, setPicture] = useState(null);
   const [pictures, setPictures] = useState([
     {
-      title:"aie 1",
-      src:"https://ipfs.io/ipfs/Qmch6wfXx3SxANUd8JorEJ5cTAzyAJUmF3q8iaatKuqTSX/astronaut/astronaut-1.png",
-      types:["illustration"]
+      title: "aie 1",
+      src: "https://ipfs.io/ipfs/Qmch6wfXx3SxANUd8JorEJ5cTAzyAJUmF3q8iaatKuqTSX/astronaut/astronaut-1.png",
+      types: ["illustration"]
     },
     {
-      title:"aie 1",
-      src:"https://ipfs.io/ipfs/Qmch6wfXx3SxANUd8JorEJ5cTAzyAJUmF3q8iaatKuqTSX/astronaut/astronaut-2.png",
-      types:["illustration"]
+      title: "aie 1",
+      src: "https://ipfs.io/ipfs/Qmch6wfXx3SxANUd8JorEJ5cTAzyAJUmF3q8iaatKuqTSX/astronaut/astronaut-2.png",
+      types: ["illustration"]
     },
     {
-      title:"Popeye",
-      src:"https://ipfs.io/ipfs/Qmch6wfXx3SxANUd8JorEJ5cTAzyAJUmF3q8iaatKuqTSX/cartoon/popeye.png",
-      types:["illustration"]
+      title: "Popeye",
+      src: "https://ipfs.io/ipfs/Qmch6wfXx3SxANUd8JorEJ5cTAzyAJUmF3q8iaatKuqTSX/cartoon/popeye.png",
+      types: ["illustration"]
     }
 
-    
+
   ]);
 
   const variants = ["static", "floating", "sticky"];
   const [visible, setVisible] = useState(false);
   const handler = () => setVisible(true);
 
-  
+
   useEffect(() => {
     console.log("GALLLLEEERY", filteredList)
-//const empire = pilots.filter(pilot => pilot.faction === "Empire");
+    //const empire = pilots.filter(pilot => pilot.faction === "Empire");
+    const _pictures = picturesFetch.filter(picture => {
+      return (picture.title.toLowerCase().includes(search.toLowerCase()))
+    });
+    setFilteredList(_pictures);
   }, [search])
-  
+
 
   const MockItem = ({ text }) => {
     return (
@@ -91,61 +95,57 @@ export default function GalleryComponent(props) {
   };
 
   return (
-<Grid container justifyContent={'center'}>
-    <Grid container justifyContent={'center'} sx={{mb:3}}>
+    <Grid container justifyContent={'center'}>
+      <Grid container justifyContent={'center'} sx={{ mb: 3 }}>
         <Grid item>
           <Card css={{
-              background:'$accents0',
-              color:'white',
-            }}>
+            background: '$accents0',
+            color: 'white',
+          }}>
             <Card.Body >
-            <Grid container direction={'column'} alignItems='center' rowSpacing={2}>
-              <Grid item >
-              <Input
-            color="primary"
-            css={{
-              color:'$primary',
-              //background:'$accents0'
-            }}
-          value={search}
-          //labelLeft="search" 
-          onChange={(e) => {
-            const _search = e.target.value;
-            console.log("EVENT", _search)
-            setSearch(_search);
-            const _pictures = picturesFetch.filter(picture => {
-              return(picture.title.toLowerCase().includes(_search.toLowerCase()))
-            });
-            setFilteredList(_pictures);
-          }}
-          label="Search image"
-          status="primary"
-          bordered
-          aria-label="search bar"
-            clearable
-            contentRightStyling={false}
-            placeholder="type a category, name, ideas, etc."
-            contentRight={
-              <SearchIcon />
-            }
-          />
+              <Grid container direction={'column'} alignItems='center' rowSpacing={2}>
+                <Grid item >
+                  <Input
+                    color="primary"
+                    css={{
+                      color: '$primary',
+                      //background:'$accents0'
+                    }}
+                    value={search}
+                    //labelLeft="search" 
+                    onChange={(e) => {
+                      const _search = e.target.value;
+                      console.log("EVENT", _search)
+                      setSearch(_search);
+                    }}
+                    label="Search image"
+                    status="primary"
+                    bordered
+                    aria-label="search bar"
+                    clearable
+                    contentRightStyling={false}
+                    placeholder="type a category, name, ideas, etc."
+                    contentRight={
+                      <SearchIcon />
+                    }
+                  />
+                </Grid>
+                <Grid item>
+                  <Text h5>
+                    <Text b>{`Nb : `}</Text>
+                    <Text as={'span'}>{filteredList.length}</Text>
+                  </Text>
+                </Grid>
               </Grid>
-              <Grid item>
-                <Text h5>
-                <Text b>{`Nb : `}</Text>               
-                <Text as={'span'}>{filteredList.length}</Text>
-                </Text>
-              </Grid>
-            </Grid>
             </Card.Body>
           </Card>
         </Grid>
-</Grid>
+      </Grid>
 
-    <ImageMasonry 
-    isMobile={isMobile} 
-    pictures={filteredList}
-    />
+      <ImageMasonry
+        isMobile={isMobile}
+        pictures={filteredList}
+      />
     </Grid>
   )
 }

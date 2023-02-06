@@ -63,25 +63,25 @@ export default function ImageMasonry(props) {
     setManagePage((prev) => ({
       ...prev,
       page: _page,
-      pictures: getPicturesPerPage(_page, pictures),
+      //pictures: getPicturesPerPage(_page, pictures),
     }))
   }
   useEffect(() => {
     console.log("YAAAAAA", getPicturesPerPage(managePage.page, pictures))
+    var _page = managePage.page > Math.ceil(pictures.length / MAX_PIC_PER_PAGE) ? 1 : managePage.page;
     setManagePage((prev) => ({
       ...prev,
-      pictures: getPicturesPerPage(managePage.page, pictures),
+      page:_page,
+      pictures: getPicturesPerPage(_page, pictures),
     }))
   }, [pictures])
 
   useEffect(() => {
-    /*
     console.log("YAAAAAA", getPicturesPerPage(managePage.page, pictures))
     setManagePage((prev) => ({
       ...prev,
       pictures: getPicturesPerPage(managePage.page, pictures),
     }))
-    */
 }, [managePage.page])
 
   return (
@@ -96,6 +96,7 @@ export default function ImageMasonry(props) {
         siblings={1}
       noMargin
       //loop
+      page={managePage.page}
       size={'md'}
       css={{maxWidth:'100%'}}
       total={Math.ceil(pictures.length / MAX_PIC_PER_PAGE)}
@@ -131,7 +132,8 @@ export default function ImageMasonry(props) {
           borderRadius:10
         }}
         loader={myLoader}
-        priority
+        //priority
+        loading='lazy'
         quality={100}
       />
       <ImageListItemBar
