@@ -10,11 +10,17 @@ export const Layout = ({ children, padding=0 }) => {
   const tabLight = [
     "/images/home/backgrounds/light-1.png",
     "/images/home/backgrounds/light-2.png",
+    "/images/home/backgrounds/light-3.png",
+    "/images/home/backgrounds/light-4.png",
+    "/images/home/backgrounds/light-5.png",
    // "/images/tutorial/backgrounds/back.png",
   ]
   const tabDark = [
     "/images/home/backgrounds/dark-1.png",
     "/images/home/backgrounds/dark-2.png",
+    "/images/home/backgrounds/dark-3.png",
+    "/images/home/backgrounds/dark-4.png",
+    "/images/home/backgrounds/dark-5.png",
     //"/images/tutorial/backgrounds/back.png",
   ]
   const randomIndex = isDark ? getRandomNumber(0, tabDark.length) : getRandomNumber(0, tabLight.length);

@@ -9,7 +9,16 @@ import { Text, useTheme } from '@nextui-org/react';
 import { PICTURES_HOME } from '@/__mocks__/_pictures_';
 
 const homePictures = [
-  PICTURES_HOME[16], //moon
+  PICTURES_HOME[180],
+  PICTURES_HOME[181],
+  PICTURES_HOME[182],
+  PICTURES_HOME[183],
+  PICTURES_HOME[184],
+  PICTURES_HOME[185],
+  PICTURES_HOME[186],
+  PICTURES_HOME[187],
+  /*
+PICTURES_HOME[16], //moon
   PICTURES_HOME[40], //indian
   PICTURES_HOME[63], //monkey
   PICTURES_HOME[94], //planet earth
@@ -19,6 +28,7 @@ const homePictures = [
   PICTURES_HOME[128], //african village
   PICTURES_HOME[152], //painting
   PICTURES_HOME[170], //building
+  */
 ];
 
 const inter = Inter({ subsets: ['latin'] })

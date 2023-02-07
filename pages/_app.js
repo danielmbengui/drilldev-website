@@ -46,10 +46,11 @@ const MyApp = ({ Component, pageProps }) => {
     let theme = window.localStorage.getItem(STORAGE_SCREEN_MODE);
 
     setIsDark(theme === 'dark');
+    document.documentElement.setAttribute('data-theme', theme)
     const observer = new MutationObserver(() => {
       let newTheme = getDocumentTheme(document?.documentElement);
       
-
+      //document.documentElement.setAttribute('data-theme', newTheme)
       setIsDark(newTheme === 'dark');
     });
 

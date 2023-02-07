@@ -48,8 +48,26 @@
   --card-border-rgb: 131, 134, 135;
 }
 
+[data-theme="light"] {
+  --yarl__container_background_color:rgba(255,255,255, 0.9);
+}
+
+[data-theme="dark"] {
+  --yarl__container_background_color:rgba(0,0,0, 0.9);
+}
+
+
+/*
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
+    --yarl__container_background_color:rgba(0,0,0, 0.9);
+
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
@@ -80,6 +98,7 @@
     --card-border-rgb: 200, 200, 200;
   }
 }
+*/
 
 * {
   box-sizing: border-box;
@@ -111,8 +130,4 @@ a  {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
+

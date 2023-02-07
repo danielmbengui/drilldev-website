@@ -13,7 +13,12 @@ import { useTranslation } from 'next-i18next';
 import { NAMESPACE_LANGAGE_COMMON } from '@/constants';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
-import { IPFSHTTPClient } from 'ipfs-http-client';
+import "react-responsive-carousel/lib/styles/carousel.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import { PICTURES_HOME } from '@/__mocks__/_pictures_';
+import BasicExample from '../Carousels/BasicExample';
 
 const Label = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -36,16 +41,20 @@ function getPicturesPerPage(page = 1, pictures = []){
     return(_pictures);
 }
 
-async function displayImage() {
-  //const IPFS = require('ipfs');
- // const IPFS = require('ipfs-http-client');
-//const ipfs = new IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' });
-  const ipfs = IPFSHTTPClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' });
-  const imageHash = "Qmc8Pvj2hU7syTZVZWNHFT8dNhZypboTon2ioL6b7V6TXf/mid-journey/Ghibli_style_Whales_Swimming_in_the_Sky_Refreshing_Sky_b9ed4ca7-b87e-4efd-828a-54df495c212e.png";
-  const imageData = await ipfs.cat(imageHash);
-  const imageUrl = URL.createObjectURL(new Blob([imageData.data], { type: "image/jpeg" }));
-  //document.getElementById("image").src = imageUrl;
-  return (imageUrl);
+function downloadImage(url) {
+  fetch(url, {
+    mode : 'no-cors',
+  })
+    .then(response => response.blob())
+    .then(blob => {
+    let blobUrl = window.URL.createObjectURL(blob);
+    let a = document.createElement('a');
+    a.download = url.replace(/^.*[\\\/]/, '');
+    a.href = blobUrl;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  })
 }
 
 export default function ImageMasonry(props) {
@@ -86,6 +95,58 @@ export default function ImageMasonry(props) {
 
   return (
     <Grid.Container css={{ minHeight: 500, width:'100%',}}>
+      <Grid xs={12}>
+    <BasicExample />
+{
+  
+  /*
+     <Lightbox
+        open={true}
+        sx={{display:'none'}}
+        //close={() => setOpen(false)}
+        slides={[
+          { 
+            src: PICTURES_HOME[0].src,
+            srcSet: [
+            { src: PICTURES_HOME[0].src, width: 320, height: 213 },
+            { src: PICTURES_HOME[0].src, width: 640, height: 427 },
+            { src: PICTURES_HOME[0].src, width: 1200, height: 800 },
+            { src: PICTURES_HOME[0].src, width: 2048, height: 1365 },
+            { src: PICTURES_HOME[0].src, width: 3840, height: 2560 },
+          ] 
+        },
+          { 
+            src: PICTURES_HOME[1].src,
+            srcSet: [
+              { src: PICTURES_HOME[1].src, width: 320, height: 213 },
+              { src: PICTURES_HOME[1].src, width: 640, height: 427 },
+              { src: PICTURES_HOME[1].src, width: 1200, height: 800 },
+              { src: PICTURES_HOME[1].src, width: 2048, height: 1365 },
+              { src: PICTURES_HOME[1].src, width: 3840, height: 2560 },
+            ] 
+           },
+          { src: PICTURES_HOME[2].src },
+        ]}
+      />
+
+      <Carousel sx={{display:'none'}}>
+                <div>
+                    <img src={PICTURES_HOME[0].src} />
+                    <p className="legend">Legend 1</p>
+                </div>
+                <div>
+                    <img src={PICTURES_HOME[1].src}  />
+                    <p className="legend">Legend 2</p>
+                </div>
+                <div>
+                    <img src={PICTURES_HOME[2].src}  />
+                    <p className="legend">Legend 3</p>
+                </div>
+            </Carousel>
+  */
+}
+
+      </Grid>
             <Grid xs={12} justify='center' css={{
               mb:30,
               maxWidth:'fit-content'
@@ -170,8 +231,11 @@ export default function ImageMasonry(props) {
         <IconButton
           sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
           aria-label={`info about ${item.title}`}
-          href={item.src}
-          download={item.src}
+          //href={item.src}
+          //download={item.src}
+          onClick={() => {
+            downloadImage(item.src);
+          }}
         >
           <FileDownloadIcon sx={{
             color:'white',

@@ -36,9 +36,11 @@
     "or": "^0.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-responsive-carousel": "^3.2.23",
     "swr": "^2.0.3",
     "timers-browserify": "^2.0.12",
-    "yarn": "^1.22.19"
+    "yarn": "^1.22.19",
+    "yet-another-react-lightbox": "^2.2.7"
   },
   "devDependencies": {
     "@types/node": "^18.11.18",

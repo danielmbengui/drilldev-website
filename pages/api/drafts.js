@@ -21,7 +21,28 @@ function writeFile(data) {
     if (!fs.existsSync(DIR_MIDJOURNEY_DATAS)) {
         fs.mkdirSync(DIR_MIDJOURNEY_DATAS, { recursive: true });
     }
-    fs.writeFileSync(DIR_MIDJOURNEY_DATAS + "/data.json", JSON.stringify(data, null, 2));
+    fs.writeFileSync(DIR_MIDJOURNEY_DATAS + "/data2.json", JSON.stringify(data, null, 2));
+}
+
+
+function updateFile() {
+    const array = getDataFile();
+    const _array = array.map((item,) => {
+        const _item = item;
+        _item.description = item.title.toLowerCase();
+        _item.width = 1024;
+        _item.height = 1024;
+        return(_item);
+    })
+    fs.writeFileSync(DIR_MIDJOURNEY_DATAS + "/data.json", JSON.stringify(_array, null, 2));
+}
+
+function getDataFile() {
+    if (!fs.existsSync(DIR_MIDJOURNEY_DATAS)) {
+        fs.mkdirSync(DIR_MIDJOURNEY_DATAS, { recursive: true });
+        fs.writeFileSync(DIR_MIDJOURNEY_DATAS + "/data.json", JSON.stringify([], null, 2));
+    }
+    return JSON.parse(fs.readFileSync(DIR_MIDJOURNEY_DATAS + "/data.json"));
 }
 
 function formatTitle(link) {
@@ -67,7 +88,8 @@ function getAllPictures() {
                 }
             )
         }) 
-        writeFile(array);
+        //writeFile(array);
+        //updateFile();
         return (array);
     }
     return ([]);
