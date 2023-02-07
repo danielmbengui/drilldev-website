@@ -61,6 +61,7 @@ export default function NavbarComponent(props) {
       name: t('menuGallery', { ns: NAMESPACE_LANGAGE_COMMON }),
       href: PAGE_LINK_GALLERY,
     },
+    /*
     {
       name: t('menuTutorial', { ns: NAMESPACE_LANGAGE_COMMON }),
       href: PAGE_LINK_TUTORIAL,
@@ -95,6 +96,7 @@ export default function NavbarComponent(props) {
         }
       ]
     }
+    */
   ];
 
   const collapseItems = [
