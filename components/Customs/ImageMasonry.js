@@ -194,7 +194,8 @@ export default function ImageMasonry(props) {
         }}
         loader={myLoader}
         //priority
-        loading='lazy'
+        //priority={index < 4 ? true : false}
+        loading={index < 4 ? 'eager' : 'lazy'}
         quality={100}
       />
       <ImageListItemBar
