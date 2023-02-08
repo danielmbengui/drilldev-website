@@ -34,14 +34,16 @@ function updateFile() {
         _item.height = 1024;
         return (_item);
     })
-    fs.writeFileSync(DIR_MIDJOURNEY_DATAS + "/data.json", JSON.stringify(_array, null, 2));
+    fs.writeFileSync(DIR_MIDJOURNEY_DATAS + "/data.json", JSON.stringify(getRandomSortPictures(_array), null, 2));
 }
 
 function getDataFile() {
+    /*
     if (!fs.existsSync(DIR_MIDJOURNEY_DATAS)) {
         fs.mkdirSync(DIR_MIDJOURNEY_DATAS, { recursive: true });
         fs.writeFileSync(DIR_MIDJOURNEY_DATAS + "/data.json", JSON.stringify([], null, 2));
     }
+    */
     return JSON.parse(fs.readFileSync(DIR_MIDJOURNEY_DATAS + "/data.json"));
 }
 
@@ -132,7 +134,7 @@ function getPicturesFile() {
 }
 */
 function getListPicturesBySearch(search, page, per_page) {
-    const array = getRandomSortPictures(getDataFile());
+    const array = getDataFile();
     const searchs = array.filter((item) => {
         if (item.title.toLowerCase().includes(search.toLowerCase())) {
             return (item);
@@ -184,7 +186,11 @@ export default async function handler(req, res) {
                     msg: array.length ? "Success" : "Error",
                     result:array,
                 });
-            } else if (req.query.action === "get_one" && req.query.name) {
+            } else if (req.query.action === "update_file") {
+                updateFile();
+                return res.status(200).json({ msg: "Success"});
+            }
+            else if (req.query.action === "get_one" && req.query.name) {
                 const one = getOnePicture(req.query.name);
                 return res.status(200).json({ msg: one ? "Success" : "Error", file: one, });
             }
