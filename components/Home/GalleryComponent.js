@@ -44,18 +44,17 @@ const fetcherListPictures = params => axios.get(`${PAGE_LINK_API_PICTURES}`, par
 
 
 export default function GalleryComponent(props) {
-  const { pictures, picturesFetch, lang, isMobile } = props;
-  const [search, setSearch] = useState('');
+  const { isMobile } = props;
 
   const [manager, setManager] = useState({
-    search: pictures.search,
-    page: pictures.page,
-    per_page: pictures.per_page,
-    next_page: pictures.next_page,
-    total_page: pictures.total_page,
-    length: pictures.length,
-    total_length: pictures.total_length,
-    list: pictures.list,
+    search: '',
+    page: 1,
+    per_page: GALLERY_MAX_PICTURES_PER_PAGE,
+    next_page: 0,
+    total_page: 0,
+    length: 0,
+    total_length: 0,
+    list: [],
   });
   const { data, error, isLoading, isValidating } = useSWR({
     params: {
@@ -73,7 +72,7 @@ export default function GalleryComponent(props) {
     console.log("MANAGER DATA search", manager.search)
   })
 
-  const [filteredList, setFilteredList] = useState(pictures.list);
+  const [filteredList, setFilteredList] = useState([]);
   const { isDark } = useTheme();
   const [variant, setVariant] = useState("static");
   const [srcModal, setSrcModal] = useState("");
