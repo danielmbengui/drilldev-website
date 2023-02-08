@@ -112,7 +112,7 @@ export default function ContainerPageComponent(props) {
                 //maxDelay={10000}
                 //autoResize={true}
                 width={500}
-                height={400}
+                height={500}
                 src={src}
                 alt="logo drill-dev"
                 loader={myLoader}
@@ -134,8 +134,8 @@ export default function ContainerPageComponent(props) {
             }}>
               <Grid item >
                 <Image
-                  width={250}
-                  height={100}
+                  width={320}
+                  height={120}
                   src={isDark ? logoDarkTheme : logoLightTheme}
                   alt="logo drill-dev"
                   //objectFit="contain"
