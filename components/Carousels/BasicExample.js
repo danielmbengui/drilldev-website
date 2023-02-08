@@ -32,7 +32,7 @@ const BasicExample = () => {
         close={() => setAdvancedExampleOpen(false)}
         slides={advancedSlides}
         plugins={[Captions, Zoom, Fullscreen, Thumbnails, Video, Slideshow]}
-        index={advancedSlides.length ? 2023 : 1}
+        index={advancedSlides.length ? 1 : 1}
       />
 
       <LightboxButton title={'test'} onClick={() => {

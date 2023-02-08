@@ -5,10 +5,26 @@ export const WEBSITE_NAME = 'Drill Dev';
 export const APP_NAME = 'Drill Dev';
 export const DEFAULT_SCREEN_MODE = 'light';
 export const DEFAULT_LANGAGE = 'fr';
+export const GALLERY_MAX_PICTURES_PER_PAGE = 100;
 
 /* --------------- API'S -------------- */
+/*                 Pages                */
+export const PAGE_LINK_API_PICTURES = "/api/pictures";
+
+/*                Methods               */
 export const METHOD_GET = 'GET';
 export const METHOD_POST = 'POST';
+export const METHOD_PUT = 'PUT';
+
+/*                Queries               */
+export const QUERY_ACTION_GET_LIST_PICTURES = 'get_list_pictures';
+export const QUERY_SEARCH = 'search';
+export const QUERY_PAGE = 'page';
+export const QUERY_PER_PAGE = 'per_page';
+/*                 Queries                */
+
+/*                Methods               */
+
 export const TEXT_PUBLIC = `public`;
 export const EXT_PNG = `.png`;
 export const EXT_JPG = `.jpg`;
@@ -46,6 +62,7 @@ export const PAGE_LINK_GALLERY = "/gallery";
 export const PAGE_LINK_TUTORIAL = "/tutorial";
 export const PAGE_LINK_TUTORIAL_DRILL_DEV = "/tutorial/drilldev";
 export const PAGE_LINK_TUTORIAL_MIDJOURNEY = "/tutorial/midjourney";
+
 
 /* --------------- STORAGE -------------- */
 export const STORAGE_SCREEN_MODE = "data-theme";

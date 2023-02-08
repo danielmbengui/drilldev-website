@@ -15,10 +15,19 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import "react-responsive-carousel/lib/styles/carousel.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
-import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import { PICTURES_HOME } from '@/__mocks__/_pictures_';
 import BasicExample from '../Carousels/BasicExample';
+
+import Lightbox from "yet-another-react-lightbox";
+import Captions from "yet-another-react-lightbox/plugins/captions";
+import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
+import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import Video from "yet-another-react-lightbox/plugins/video";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/plugins/captions.css";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 const Label = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -58,116 +67,34 @@ function downloadImage(url) {
 }
 
 export default function ImageMasonry(props) {
-  const {t} = useTranslation();
-  const {isMobile, pictures} = props;
-  const [picture, setPicture] = useState(null);
-  const [visible, setVisible] = useState(false);
-
-  const [managePage, setManagePage] = useState({
-    page:1,
-    pictures: getPicturesPerPage(1, pictures),
-  });
-
-  const handleChangePage = (_page) => {
-    setManagePage((prev) => ({
-      ...prev,
-      page: _page,
-      //pictures: getPicturesPerPage(_page, pictures),
-    }))
-  }
-  useEffect(() => {
-    console.log("YAAAAAA", getPicturesPerPage(managePage.page, pictures))
-    var _page = managePage.page > Math.ceil(pictures.length / MAX_PIC_PER_PAGE) ? 1 : managePage.page;
-    setManagePage((prev) => ({
-      ...prev,
-      page:_page,
-      pictures: getPicturesPerPage(_page, pictures),
-    }))
-  }, [pictures])
-
-  useEffect(() => {
-    console.log("YAAAAAA", getPicturesPerPage(managePage.page, pictures))
-    setManagePage((prev) => ({
-      ...prev,
-      pictures: getPicturesPerPage(managePage.page, pictures),
-    }))
-}, [managePage.page])
+  const {manager, handleChangeState} = props;
+  const [indexPicture, setIndexPicture] = useState(-1);
 
   return (
     <Grid.Container css={{ minHeight: 500, width:'100%',}}>
-      <Grid xs={12}>
-    <BasicExample />
-{
-  
-  /*
-     <Lightbox
-        open={true}
-        sx={{display:'none'}}
-        //close={() => setOpen(false)}
-        slides={[
-          { 
-            src: PICTURES_HOME[0].src,
-            srcSet: [
-            { src: PICTURES_HOME[0].src, width: 320, height: 213 },
-            { src: PICTURES_HOME[0].src, width: 640, height: 427 },
-            { src: PICTURES_HOME[0].src, width: 1200, height: 800 },
-            { src: PICTURES_HOME[0].src, width: 2048, height: 1365 },
-            { src: PICTURES_HOME[0].src, width: 3840, height: 2560 },
-          ] 
-        },
-          { 
-            src: PICTURES_HOME[1].src,
-            srcSet: [
-              { src: PICTURES_HOME[1].src, width: 320, height: 213 },
-              { src: PICTURES_HOME[1].src, width: 640, height: 427 },
-              { src: PICTURES_HOME[1].src, width: 1200, height: 800 },
-              { src: PICTURES_HOME[1].src, width: 2048, height: 1365 },
-              { src: PICTURES_HOME[1].src, width: 3840, height: 2560 },
-            ] 
-           },
-          { src: PICTURES_HOME[2].src },
-        ]}
-      />
-
-      <Carousel sx={{display:'none'}}>
-                <div>
-                    <img src={PICTURES_HOME[0].src} />
-                    <p className="legend">Legend 1</p>
-                </div>
-                <div>
-                    <img src={PICTURES_HOME[1].src}  />
-                    <p className="legend">Legend 2</p>
-                </div>
-                <div>
-                    <img src={PICTURES_HOME[2].src}  />
-                    <p className="legend">Legend 3</p>
-                </div>
-            </Carousel>
-  */
-}
-
-      </Grid>
             <Grid xs={12} justify='center' css={{
               mb:30,
               maxWidth:'fit-content'
             }}>
             <Pagination 
-            onChange={handleChangePage}
+            onChange={(page) => {
+              handleChangeState("page", page)
+            }}
         boundaries={0}
         siblings={1}
       noMargin
       //loop
-      page={managePage.page}
+      page={manager.page}
       size={'md'}
       css={{maxWidth:'100%'}}
-      total={Math.ceil(pictures.length / MAX_PIC_PER_PAGE)}
-      initialPage={1}
+      total={manager.total_page}
+      //initialPage={1}
       />
             </Grid>
       <Grid xs={12} justify='center'>
       <Masonry columns={{xs:2, sm:3, md:5}}>
 
-{managePage.pictures.map((item, index) => {
+{manager.list.map((item, index) => {
   return (
     <div key={index} style={{
       cursor:'pointer'
@@ -175,8 +102,9 @@ export default function ImageMasonry(props) {
       <ImageListItem>
        <Image
        onClick={() => {
-        setPicture(item);
-        setVisible(true);
+        //setPicture(item);
+        //setVisible(true);
+        setIndexPicture(index)
       }}
         src={`${item.src}`}
         srcSet={`${item.src}`}
@@ -193,9 +121,9 @@ export default function ImageMasonry(props) {
           borderRadius:10
         }}
         loader={myLoader}
-        //priority
+        priority
         //priority={index < 4 ? true : false}
-        loading={index < 4 ? 'eager' : 'lazy'}
+        //loading={index < 4 ? 'eager' : 'lazy'}
         quality={100}
       />
       <ImageListItemBar
@@ -215,8 +143,9 @@ export default function ImageMasonry(props) {
             color: 'rgba(255, 255, 255, 0.54)' }}
           aria-label={`info about ${item.title}`}
           onClick={() => {
-            setPicture(item);
-            setVisible(true);
+            //setPicture(item);
+            //setVisible(true);
+            setIndexPicture(index);
           }}
         >
           <VisibilityIcon  sx={{
@@ -256,10 +185,13 @@ export default function ImageMasonry(props) {
 })}
 </Masonry>
       </Grid>
-      <ModalCustom 
-      isMobile={isMobile}
-      picture={picture}
-      visible={visible} setVisible={setVisible}
+      <Lightbox
+      title={'Captions, Fullscreen, Slideshow, Thumbnails, Video, Zoom'}
+        open={indexPicture >= 0}
+        close={() => setIndexPicture(-1)}
+        slides={manager.list}
+        plugins={[Captions, Zoom, Fullscreen, Thumbnails, /*Video, Slideshow*/]}
+        index={indexPicture}
       />
     </Grid.Container>
   );

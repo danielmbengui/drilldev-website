@@ -16,7 +16,6 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           {CssBaseline.flush()}
-          <script src="https://unpkg.com/ipfs-http-client@37.3.0/dist/index.min.js"></script>
           <meta charSet="utf-8" />
           <meta name="description" content="See, download and share." />
           <link

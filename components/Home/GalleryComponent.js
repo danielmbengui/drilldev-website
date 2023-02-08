@@ -7,6 +7,10 @@ import ImageMasonry from "../Customs/ImageMasonry.js";
 import ContainerPageComponent from "../Containers/ContainerPageComponent.js";
 import SearchIcon from '@mui/icons-material/Search';
 import { Container, Grid } from "@mui/material";
+import axios from 'axios';
+import useSWR from 'swr';
+import { GALLERY_MAX_PICTURES_PER_PAGE, PAGE_LINK_API_PICTURES, QUERY_ACTION_GET_LIST_PICTURES, QUERY_SEARCH } from "@/constants.js";
+
 
 const logoLightTheme = "/images/logos/logo_orange_complete_no_back.png";
 const logoDarkTheme = "/images/logos/logo_orange_complete_no_back.png";
@@ -36,50 +40,88 @@ function getRandomSortPictures(_pictures = []) {
   return randomPictures; // The maximum is exclusive and the minimum is inclusive
 }
 
+const fetcherListPictures = params => axios.get(`${PAGE_LINK_API_PICTURES}`, params).then(res => res.data);
+
 
 export default function GalleryComponent(props) {
-  const { picturesFetch, lang, isMobile } = props;
-  const [filteredList, setFilteredList] = useState(picturesFetch);
+  const { pictures, picturesFetch, lang, isMobile } = props;
   const [search, setSearch] = useState('');
+
+  const [manager, setManager] = useState({
+    search: pictures.search,
+    page: pictures.page,
+    per_page: pictures.per_page,
+    next_page: pictures.next_page,
+    total_page: pictures.total_page,
+    length: pictures.length,
+    total_length: pictures.total_length,
+    list: pictures.list,
+  });
+  const { data, error, isLoading, isValidating } = useSWR({
+    params: {
+      action: QUERY_ACTION_GET_LIST_PICTURES,
+      search: manager.search,
+      page: manager.page,
+      per_page: manager.per_page,
+    }
+  }, fetcherListPictures);
+
+  useEffect(() => {
+    console.log("MANAGE loading", isLoading)
+    console.log("MANAGE validate", isValidating)
+    console.log("MANAGE data", data)
+    console.log("MANAGER DATA search", manager.search)
+  })
+
+  const [filteredList, setFilteredList] = useState(pictures.list);
   const { isDark } = useTheme();
   const [variant, setVariant] = useState("static");
   const [srcModal, setSrcModal] = useState("");
   const [titleModal, setTitleModal] = useState("");
   const [typesModal, setTypesModal] = useState([]);
   const [picture, setPicture] = useState(null);
-  const [pictures, setPictures] = useState([
-    {
-      title: "aie 1",
-      src: "https://ipfs.io/ipfs/Qmch6wfXx3SxANUd8JorEJ5cTAzyAJUmF3q8iaatKuqTSX/astronaut/astronaut-1.png",
-      types: ["illustration"]
-    },
-    {
-      title: "aie 1",
-      src: "https://ipfs.io/ipfs/Qmch6wfXx3SxANUd8JorEJ5cTAzyAJUmF3q8iaatKuqTSX/astronaut/astronaut-2.png",
-      types: ["illustration"]
-    },
-    {
-      title: "Popeye",
-      src: "https://ipfs.io/ipfs/Qmch6wfXx3SxANUd8JorEJ5cTAzyAJUmF3q8iaatKuqTSX/cartoon/popeye.png",
-      types: ["illustration"]
-    }
 
+  const handleChangeState = (field, value) => {
+    setManager((prev) => ({
+      ...prev,
+      [field]: value
+    }));
+  };
 
-  ]);
-
-  const variants = ["static", "floating", "sticky"];
-  const [visible, setVisible] = useState(false);
-  const handler = () => setVisible(true);
-
+  const handleChangeEvent = (field) => {
+    return (e) => {
+      setManager((prev) => ({
+        ...prev,
+        [field]: e.target.value
+      }));
+    };
+  };
 
   useEffect(() => {
-    console.log("GALLLLEEERY", filteredList)
-    //const empire = pilots.filter(pilot => pilot.faction === "Empire");
-    const _pictures = picturesFetch.filter(picture => {
-      return (picture.title.toLowerCase().includes(search.toLowerCase()))
-    });
-    setFilteredList(_pictures);
-  }, [search])
+    if (data) {
+      console.log("GALLLLEEERY", data);
+      handleChangeState("total_length", data.result.total_length);
+      handleChangeState("total_page", data.result.total_page);
+      handleChangeState("page", data.result.page);
+      handleChangeState("next_page", data.result.next_page);
+      handleChangeState("list", data.result.list);
+      
+    }
+    //handleChangeState("search", search);
+    console.log("CHANGE SEARCH", manager.search);
+    //handleChangeState("total_length", data.result.total_length);
+    //handleChangeState("search", data.result.search);
+    /*
+    page: pictures.page,
+        per_page: pictures.per_page,
+        next_page: pictures.next_page,
+        total_page: pictures.total_page,
+        length: pictures.length,
+        total_length: pictures.total_length,
+        pictures: pictures.list,
+    */
+    //setFilteredList(manager.pictures);
+  }, [data])
 
 
   const MockItem = ({ text }) => {
@@ -101,9 +143,10 @@ export default function GalleryComponent(props) {
           <Card css={{
             background: '$accents0',
             color: 'white',
+            pb:20
           }}>
-            <Card.Body >
-              <Grid container direction={'column'} alignItems='center' rowSpacing={2}>
+            <Card.Body>
+              <Grid container direction={'column'} alignItems='center'>
                 <Grid item >
                   <Input
                     color="primary"
@@ -111,12 +154,12 @@ export default function GalleryComponent(props) {
                       color: '$primary',
                       //background:'$accents0'
                     }}
-                    value={search}
+                    value={manager.search}
+                    initialValue={manager.search}
                     //labelLeft="search" 
                     onChange={(e) => {
-                      const _search = e.target.value;
-                      console.log("EVENT", _search)
-                      setSearch(_search);
+                      console.log("SEARCH", e.target.value)
+                      handleChangeState("search", e.target.value)
                     }}
                     label="Search image"
                     status="primary"
@@ -125,15 +168,38 @@ export default function GalleryComponent(props) {
                     clearable
                     contentRightStyling={false}
                     placeholder="type a category, name, ideas, etc."
+                    //helperColor={helper.color}
+                    helperText={`Result(s) : ${manager.total_length}`}
                     contentRight={
                       <SearchIcon />
                     }
                   />
                 </Grid>
-                <Grid item>
+                <Grid item xs={12} sx={{display:'none'}}>
                   <Text h5>
-                    <Text b>{`Nb : `}</Text>
-                    <Text as={'span'}>{filteredList.length}</Text>
+                    <Text b>{`actual page : `}</Text>
+                    <Text as={'span'}>{manager.page}</Text>
+                  </Text>
+                </Grid>
+
+                <Grid item xs={12} sx={{display:'none'}}>
+                  <Text h5>
+                    <Text b>{`total pages : `}</Text>
+                    <Text as={'span'}>{manager.total_page}</Text>
+                  </Text>
+                </Grid>
+
+                <Grid item xs={12} sx={{display:'none'}}>
+                  <Text h5>
+                    <Text b>{`length pictures page : `}</Text>
+                    <Text as={'span'}>{manager.length}</Text>
+                  </Text>
+                </Grid>
+
+                <Grid item xs={12} sx={{display:'none'}}>
+                  <Text h5>
+                    <Text b>{`Nb total : `}</Text>
+                    <Text as={'span'}>{manager.total_length}</Text>
                   </Text>
                 </Grid>
               </Grid>
@@ -145,6 +211,8 @@ export default function GalleryComponent(props) {
       <ImageMasonry
         isMobile={isMobile}
         pictures={filteredList}
+        manager={manager}
+        handleChangeState={handleChangeState}
       />
     </Grid>
   )
