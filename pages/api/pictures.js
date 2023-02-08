@@ -44,7 +44,9 @@ function getDataFile() {
         fs.writeFileSync(DIR_MIDJOURNEY_DATAS + "/data.json", JSON.stringify([], null, 2));
     }
     */
-    return JSON.parse(fs.readFileSync(DIR_MIDJOURNEY_DATAS + "/data.json"));
+    const array = require("../../public/pictures/datas/data.json")
+    //return JSON.parse(fs.readFileSync(DIR_MIDJOURNEY_DATAS + "/data.json"));
+    return (array);
 }
 
 function formatTitle(link) {
