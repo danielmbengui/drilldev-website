@@ -66,7 +66,7 @@ class MyDocument extends Document {
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="default" />
           <meta name="apple-mobile-web-app-title" content="Dandela Crypto Converter" />
-          <meta name="description" content="Dandela Crypto Converter - Financial freedom | Freedom to choose" />
+          <meta name="description" content="See, download and share." />
           <meta name="format-detection" content="telephone=no" />
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="msapplication-config" content="/icons/browserconfig.xml" />
@@ -81,19 +81,19 @@ class MyDocument extends Document {
           <link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico" />
           <link rel="icon" type="image/ico" sizes="16x16" href="/images/favicon.ico" />
           <link rel="manifest" href="/manifest.json" />
-          <link rel="mask-icon" href="/images/logos/logo_orange_pic_no_back.png" color="#FFFFFFFF" />
+          <link rel="mask-icon" href="/images/logos/logo_orange_maskable_x512.png" color="#FFFFFFFF" />
           <link rel="shortcut icon" href="/images/favicon.ico" />
 
           <meta name="twitter:card" content="summary" />
           <meta name="twitter:url" content="https://dandela.com" />
-          <meta name="twitter:title" content="Dandela Crypto Converter - Financial freedom | Freedom to choose" />
+          <meta name="twitter:title" content="See, download and share." />
           <meta name="twitter:description" content="Dandela Crypto Converter - Financial freedom | Freedom to choose" />
           <meta name="twitter:image" content="https://drill-dev.com/images/logos/logo_orange_pic_no_back.png" />
           <meta name="twitter:creator" content="@DrillDev" />
           <meta property="og:type" content="website" />
-          <meta property="og:title" content="Dandela | Crypto Converter" />
-          <meta property="og:description" content="Dandela Crypto Converter - Financial freedom | Freedom to choose" />
-          <meta property="og:site_name" content="Dandela Crypto Converter - Financial freedom | Freedom to choose" />
+          <meta property="og:title" content="Drill Devr" />
+          <meta property="og:description" content="See, download and share.ose" />
+          <meta property="og:site_name" content="Drill Dev" />
           <meta property="og:url" content="https://drill-dev.com" />
           <meta property="og:image" content="/images/logos/logo_orange_pic_no_back.png" />
         </Head>
