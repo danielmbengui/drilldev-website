@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { Inter } from '@next/font/google';
 import GalleryComponent from '@/components/Home/GalleryComponent';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { GALLERY_MAX_PICTURES_PER_PAGE, NAMESPACE_LANGAGE_COMMON, PAGE_LINK_API_PICTURES, QUERY_ACTION_GET_LIST_PICTURES, TAB_LANGAGES, TAB_NAMEPACES } from '@/constants';
+import { DEFAULT_LANGAGE, GALLERY_MAX_PICTURES_PER_PAGE, LANGAGE_ENGLISH, LANGAGE_FRENCH, LANGAGE_PORTUGUESE, NAMESPACE_LANGAGE_COMMON, PAGE_LINK_API_PICTURES, QUERY_ACTION_GET_LIST_PICTURES, TAB_LANGAGES, TAB_NAMEPACES } from '@/constants';
 import { useTranslation } from 'next-i18next';
 import ContainerPageComponent from '@/components/Containers/ContainerPageComponent';
 import { Text, useTheme } from '@nextui-org/react';
@@ -36,49 +36,21 @@ export default function GalleryPage(props) {
   )
 }
 
-export async function getStaticProps({ locale }) {
-  function getRandomSortPictures(_pictures) {
-    const randomOrder = [];
-    const randomPictures = [];
-    const min = 0;
-    const max = _pictures.length;
-    for (let i = 0; i < max; i++) {
-      let random = Math.floor(Math.random() * (max - min) + min);
-      while (randomOrder.includes(random)) {
-        random = Math.floor(Math.random() * (max - min) + min);
-      }
-      const element = _pictures[random];
-      randomOrder.push(random);
-      randomPictures.push(element);
-    }
-
-    return randomPictures; // The maximum is exclusive and the minimum is inclusive
+export const getStaticPaths = ({ locales }) => {
+  return {
+    paths: [
+      // if no `locale` is provided only the defaultLocale will be generated
+      { params: '', locale: DEFAULT_LANGAGE },
+      { params: '', locale: LANGAGE_FRENCH },
+      { params: '', locale: LANGAGE_ENGLISH },
+      { params: '', locale: LANGAGE_PORTUGUESE },
+    ],
+    fallback: true,
   }
+}
 
-  /*
-    const ok = await axios.get(`${process.env.domain}/api/drafts`, {
-      params : {
-        action:'get_all'
-      }
-    }).then((response) => {
-      //console.log("RESP", response.data.files);
-      return (response.data.files);
-    }).catch(() => {
-      //console.log("ERROR", error.message)
-      return ([]);
-    })
-  */
-  /*
-  const ok = await axios.get(`https://pictures.drilldev.com/datas/data.json`).then((response) => {
-    console.log("RESP", response.data);
-    return (response.data);
-  }).catch((error) => {
-    console.log("ERROR", error)
-    return ([]);
-  })
-  */
-
-  const data = require("../public/pictures/datas/data.json");
+export async function getStaticProps({ locale }) {
+  //const data = require("../public/pictures/datas/data.json");
   const pictures = await axios.get(`${process.env.domain}${PAGE_LINK_API_PICTURES}`, {
     params :{
       action:QUERY_ACTION_GET_LIST_PICTURES,
@@ -89,7 +61,7 @@ export async function getStaticProps({ locale }) {
   }).then((response) => {
     //console.log("RESP", response.data.result.length);
     return (response.data.result);
-  }).catch((error) => {
+  }).catch(() => {
     //console.log("ERROR", error)
     return ([]);
   })

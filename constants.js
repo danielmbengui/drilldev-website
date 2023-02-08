@@ -30,7 +30,7 @@ export const EXT_PNG = `.png`;
 export const EXT_JPG = `.jpg`;
 export const DIR_MIDJOURNEY_PICTURES = `${cwd()}/public/pictures/images`;
 export const DIR_MIDJOURNEY_DATAS = `${cwd()}/public/pictures/datas`;
-export const DIR_MIDJOURNEY_DRAFTS = `${cwd()}/public/images/mid-journey/drafts`;
+export const DIR_MIDJOURNEY_DRAFTS = `${cwd()}/public/pictures/images/mid-journey/drafts`;
 export const RELATIVE_DIR_MID_JOURNEY = `/images/mid-journey`;
 
 /* --------------- NAME SPACES -------------- */
