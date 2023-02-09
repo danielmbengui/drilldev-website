@@ -1,7 +1,7 @@
 {
     "description_page" : "Error 404",
     "title_page" : "Page 404",
-    "page_not_there":"La page que vous recherchez n'existe pas",
-    "message_error": "Soit vous avez emprunté un chemin inconnu, soit vous êtes venu ici par erreur. Quoi qu'il en soit, essayez de faire un tour sur notre site internet!",
-    "back_to_dasboard":"aller à l'accueil"
+    "page_not_there":"The page you are looking for does not exist",
+    "message_error": "Either you took an unknown path, or you came here by mistake. Anyway, try to have a look on our website!",
+    "back_to_dasboard":"back"
 }

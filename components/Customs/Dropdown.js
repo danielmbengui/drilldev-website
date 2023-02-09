@@ -4,8 +4,9 @@ import { FR, GB, GR, PT } from "country-flag-icons/react/3x2";
 import { Container, Card, Row, Text, Link, Grid, Avatar } from "@nextui-org/react";
 import { EngIcon } from "./EngIcon";
 import { FlagIcon } from "./FlagIcons";
-import { DEFAULT_LANGAGE, LANGAGE_ENGLISH, LANGAGE_FRENCH, LANGAGE_PORTUGUESE, TAB_LANGAGES } from "@/constants";
+import { DEFAULT_LANGAGE, LANGAGE_ENGLISH, LANGAGE_FRENCH, LANGAGE_PORTUGUESE, NAMESPACE_LANGAGE_COMMON, TAB_LANGAGES } from "@/constants";
 import { getLangageStorage } from "@/lib/storage/UserStorageFunctions";
+import { useTranslation } from "next-i18next";
 
 /**
  <GB
@@ -23,6 +24,7 @@ function convertSelected(selected) {
   return(Array.from(selected).join("").replaceAll("_", " "));
 }
 export default function DropdownCustom(props) {
+  const {t} = useTranslation();
   const {lang, setLang} = props;
   const [selected, setSelected] = useState(new Set([lang]));
   
@@ -87,17 +89,17 @@ export default function DropdownCustom(props) {
         <Dropdown.Item key={LANGAGE_FRENCH}  command="⌘F" icon={
               <FlagIcon size={30} lang={'fr'} />
             }>
-        Français
+        {t('langFrench', {ns:NAMESPACE_LANGAGE_COMMON})}
         </Dropdown.Item>
         <Dropdown.Item key={LANGAGE_ENGLISH} command="⌘E" icon={
               <FlagIcon size={30} lang={'en'} />
             }>
-        Anglais
+        {t('langEnglish', {ns:NAMESPACE_LANGAGE_COMMON})}
         </Dropdown.Item>
         <Dropdown.Item key={LANGAGE_PORTUGUESE} command="⌘P" icon={
               <FlagIcon size={30} lang={'pt'} />
             }>
-        Portugais
+        {t('langPortuguese', {ns:NAMESPACE_LANGAGE_COMMON})}
         </Dropdown.Item>
         {
             /**

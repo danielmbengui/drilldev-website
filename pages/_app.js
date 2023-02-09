@@ -5,16 +5,17 @@ import { NextUIProvider } from '@nextui-org/react';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import { lightTheme, darkTheme } from '@/styles/theme';
 import { Switch, changeTheme, useTheme } from '@nextui-org/react'
-import { DEFAULT_LANGAGE, STORAGE_SCREEN_MODE, TAB_NAMEPACES } from '@/constants';
+import { DEFAULT_LANGAGE, NAMESPACE_LANGAGE_COMMON, STORAGE_SCREEN_MODE, TAB_NAMEPACES } from '@/constants';
 import {SSRProvider} from '@react-aria/ssr'; 
 import { useMediaQuery } from "@/styles/useMediaQuery";
 import { getLangageStorage } from '@/lib/storage/UserStorageFunctions';
 import { appWithTranslation, useTranslation } from 'next-i18next';
 import Script from 'next/script';
 import FooterComponent from '@/components/Home/FooterComponent';
+import Head from 'next/head';
 
 const MyApp = ({ Component, pageProps }) => {
-  const {i18n} = useTranslation();
+  const {t, i18n} = useTranslation();
   const isMobile = useMediaQuery(650);
   const isTablet = useMediaQuery(960);
   const isLaptop = useMediaQuery(1280);
@@ -38,6 +39,7 @@ const MyApp = ({ Component, pageProps }) => {
     let _lang = getLangageStorage();
     setLang(_lang);
     i18n.changeLanguage(_lang);
+    document.documentElement.setAttribute('lang', _lang);
       //console.log("LAAANG MAIN", _lang)
   }, [])
 
@@ -84,6 +86,12 @@ const MyApp = ({ Component, pageProps }) => {
 
   return (
     <SSRProvider>
+      <Head>
+      <meta name="description" content={t('description_page', {ns:NAMESPACE_LANGAGE_COMMON})} />
+      <meta name="twitter:description" content={t('description_page', {ns:NAMESPACE_LANGAGE_COMMON})} />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+      
                 <Script async src="https://www.googletagmanager.com/gtag/js?id=G-MJ6X1M1YRR" />
 <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2953886510697247"
   crossOrigin="anonymous" />

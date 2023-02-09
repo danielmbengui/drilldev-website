@@ -9,7 +9,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Container, Grid } from "@mui/material";
 import axios from 'axios';
 import useSWR from 'swr';
-import { GALLERY_MAX_PICTURES_PER_PAGE, PAGE_LINK_API_PICTURES, QUERY_ACTION_GET_LIST_PICTURES, QUERY_SEARCH } from "@/constants.js";
+import { GALLERY_MAX_PICTURES_PER_PAGE, NAMESPACE_LANGAGE_GALLERY, PAGE_LINK_API_PICTURES, QUERY_ACTION_GET_LIST_PICTURES, QUERY_SEARCH } from "@/constants.js";
+import { useTranslation } from "next-i18next";
 
 
 const logoLightTheme = "/images/logos/logo_orange_complete_no_back.png";
@@ -44,6 +45,7 @@ const fetcherListPictures = params => axios.get(`${PAGE_LINK_API_PICTURES}`, par
 
 
 export default function GalleryComponent(props) {
+  const {t} = useTranslation(NAMESPACE_LANGAGE_GALLERY);
   const { isMobile } = props;
 
   const [manager, setManager] = useState({
@@ -156,19 +158,16 @@ export default function GalleryComponent(props) {
                     value={manager.search}
                     initialValue={manager.search}
                     //labelLeft="search" 
-                    onChange={(e) => {
-                      console.log("SEARCH", e.target.value)
-                      handleChangeState("search", e.target.value)
-                    }}
-                    label="Search image"
+                    onChange={handleChangeEvent("search")}
+                    label={t('search_image', {ns:NAMESPACE_LANGAGE_GALLERY})}
                     status="primary"
                     bordered
                     aria-label="search bar"
                     clearable
                     contentRightStyling={false}
-                    placeholder="type a category, name, ideas, etc."
+                    placeholder={t('search_place_holder', {ns:NAMESPACE_LANGAGE_GALLERY})}
                     //helperColor={helper.color}
-                    helperText={`Result(s) : ${manager.total_length}`}
+                    helperText={`${t('search_results', {ns:NAMESPACE_LANGAGE_GALLERY})} : ${manager.total_length}`}
                     contentRight={
                       <SearchIcon />
                     }

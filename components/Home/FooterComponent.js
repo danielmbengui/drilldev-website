@@ -52,7 +52,7 @@ export default function FooterComponent(props) {
         <Grid xs={12} sm={4} justify="center" alignItems="center" >
         <Card css={{ width: 'fit-content', background:'$accents0', opacity:0.9}}>
           <Card.Body >
-            <Grid.Container justify="center" css={{textAlign:'center'}}>
+            <Grid.Container justify="center" css={{textAlign:'center', display:'none', mb:70}}>
               <Grid xs={12} justify='center'>
                   <Text h3>{`Rejoins la communauté`}</Text>
                 </Grid>
@@ -131,13 +131,12 @@ export default function FooterComponent(props) {
 
               </Grid.Container>
             </Grid.Container>
-            <Grid.Container justify="center" css={{mt:70}}>
+            <Grid.Container justify="center">
         <Grid xs={12} justify='center'>
-          <Text>© {new Date().getFullYear()} DrillDdev</Text>
+          <Text>{`©${new Date().getFullYear()} ${WEBSITE_NAME}`}</Text>
         </Grid>
         <Grid xs={12} justify='center'>
-          <Text>
-            All Rights Reserved.</Text>
+          <Text>{t('all_rights_reserved', {ns:NAMESPACE_LANGAGE_COMMON})}</Text>
         </Grid>
       </Grid.Container>
           </Card.Body>

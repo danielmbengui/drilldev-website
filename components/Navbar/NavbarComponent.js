@@ -50,6 +50,7 @@ export default function NavbarComponent(props) {
     setLang(_lang);
     i18n.changeLanguage(_lang);
     updateLangageStorage(_lang);
+    document.documentElement.setAttribute('lang', _lang);
     //handleClose();
     console.log("onChangeLanguage NavbarComponent", _lang)
   };

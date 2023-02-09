@@ -43,19 +43,16 @@ export default function HomePage(props) {
     picturesTitle={homePictures}
     sizes={sizes}
     isMobile={isMobile} isTablet={isTablet} isLaptop={isLaptop}
-    title={
-      <Text h1 size={45} b css={{
-        textGradient: `45deg, $${isDark ? 'white' : 'black'} -20%, $orange600 100%, $${isDark ? 'white' : 'black'} 80%`,
-      }}>
+    title={<Text h1 size={45} b css={{
+      textGradient: `45deg, $${isDark ? 'white' : 'black'} -20%, $orange600 100%, $${isDark ? 'white' : 'black'} 80%`,
+    }}>
 {`${t('title_page', {ns:NAMESPACE_LANGAGE_HOME})}`}
-    </Text>}
+  </Text>}
     lang={lang} setLang={setLang}
     >
       <Head>
-
         <title>{`${t('menuHome', {ns:NAMESPACE_LANGAGE_COMMON})}`}</title>
-        <meta name="description" content="Bienvenue sur notre site consacré à la démonstration d'illustrations générées par intelligence artificielle. Nous vous montrons les dernières tendances et techniques de génération d'images à l'aide de l'IA. Vous découvrirez les meilleures plateformes et outils pour créer vos propres illustrations de qualité, ainsi que les mots clés à utiliser pour optimiser les résultats. Suivez notre guide étape par étape pour créer vos propres illustrations surprenantes avec l'IA. Rejoignez notre communauté pour partager vos créations et découvrir celles des autres utilisateurs." />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content={t('description_page', {ns:NAMESPACE_LANGAGE_HOME})} />
       </Head>
 <HomeComponent sizes={sizes} />
     </ContainerPageComponent>

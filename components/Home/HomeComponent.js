@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Layout } from "../Containers/Layout.js";
 import NavbarComponent from "../Navbar/NavbarComponent.js";
-import {Card, Row, Text, Link, Avatar, useTheme, Col, Image } from "@nextui-org/react";
+import {Card, Row, Text, Link, Avatar, useTheme, Col } from "@nextui-org/react";
 import { Modal, Input, Checkbox, Button, Badge, Tooltip } from "@nextui-org/react";
 import { Mail } from "./Mail";
 import { Password } from "./Password";
@@ -17,6 +17,8 @@ import CollectionsIcon from '@mui/icons-material/Collections';
 import DownloadIcon from '@mui/icons-material/Download';
 import CustomImageList from "../Customs/CustomImageList.js";
 import { Container, Grid } from "@mui/material";
+import Image from "next/image.js";
+import { myLoader } from "@/lib/ImageLoader.js";
 
 const logoLightTheme = "/images/logos/logo_orange_complete_no_back.png";
 const logoDarkTheme = "/images/logos/logo_orange_complete_no_back.png";
@@ -97,11 +99,12 @@ setPictures(getRandomSortPictures());
       <>
       <Grid 
             container 
-            justifyContent={'space-betwen'}
-            alignItems={'stretch'}
+            justifyContent={'center'}
+            alignItems={'center'}
             spacing={1}
             sx={{
               //background: 'purple',
+              textAlign:'center',
               my:3,
             }}
             >
@@ -111,28 +114,26 @@ setPictures(getRandomSortPictures());
                   return (
                     <Grid
                     item
-                    //gap={10}
-                    //justify={"center"}
+                    justifyContent={'center'}
                       key={`${picture.title} - ${index}`}
                      xs={4}
                       sm={4}
                      md={2}
-                      //shadow={"true"}
                     >
                        <Image
                         //showSkeleton
-                        css={{
+                        style={{
                           //cursor:'pointer',
                           borderRadius:10
                         }}
-                        //maxDelay={10000}
-                        //autoResize={true}
                         width={150}
                         height={150}
                         src={picture.src}
                         alt={`${picture.src} - ${index}`}
+                        loader={myLoader}
+                        priority
+                        quality={100}
                         //objectFit="cover"
-                        objectFit="cover"
                       />
                     </Grid>
                   )
@@ -222,6 +223,40 @@ textComponent={<Container justify="center" css={{
 </Container>}
 />
 
+<MockItem 
+indexStart={24}
+indexStop={30}
+textComponent={<Container justify="center" css={{
+  background:'$background',
+  borderRadius:10,
+  p:15
+}}>
+  <Text h3 css={{ textAlign: 'center' }}>
+    {t('paragraph_9', {ns:NAMESPACE_LANGAGE_HOME})}
+  </Text>
+  <Text h3 css={{ textAlign: 'center' }}>
+  {t('paragraph_10', {ns:NAMESPACE_LANGAGE_HOME})}
+  </Text>
+</Container>}
+/>
+
+<MockItem 
+indexStart={30}
+indexStop={36}
+textComponent={<Container justify="center" css={{
+  background:'$background',
+  borderRadius:10,
+  p:15
+}}>
+  <Text h3 css={{ textAlign: 'center' }}>
+    {t('paragraph_11', {ns:NAMESPACE_LANGAGE_HOME})}
+  </Text>
+  <Text h3 css={{ textAlign: 'center' }}>
+  {t('paragraph_12', {ns:NAMESPACE_LANGAGE_HOME})}
+  </Text>
+</Container>}
+/>
+
 
         <Container sx={{
           textAlign: 'center',
@@ -242,14 +277,14 @@ textComponent={<Container justify="center" css={{
         </Container>
         <Container sx={{ my: 50, display: 'none' }}>
           <Image
-            showSkeleton
+            //showSkeleton
             //maxDelay={10000}
             //autoResize={true}
             width={150}
             height={150}
             src="/images/mid-journey/base-pic.jpg"
             alt="Default Image"
-            objectFit="cover"
+            //objectFit="cover"
           />
         </Container>
       </Container>

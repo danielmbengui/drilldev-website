@@ -15,7 +15,7 @@ const NotFoundPage = (props) => {
   const router = useRouter();
   const {lang, setLang} = props;
   const {isDark} = useTheme();
-  const { t, i18n} = useTranslation([NAMESPACE_LANGAGE_404, NAMESPACE_LANGAGE_COMMON])
+  const { t, i18n} = useTranslation(NAMESPACE_LANGAGE_404)
 /*
   const onChangeLanguage = (language) => {
     i18n.changeLanguage(language);
@@ -37,9 +37,7 @@ useEffect(() => {
     lang={lang} setLang={setLang}
     >
       <Head>
-        <title>
-          {`Dandela | ${t('menu404', { ns: NAMESPACE_LANGAGE_COMMON })}`}
-        </title>
+        <title>{`${t('menu404', { ns: NAMESPACE_LANGAGE_COMMON })}`}</title>
         <meta name="description" content={t('description_page', { ns: NAMESPACE_LANGAGE_404 })} />
       </Head>
       <Box
@@ -106,7 +104,7 @@ useEffect(() => {
                   //backgroundColor:'secondary.main'
               }}}
               >
-                {`Retour`}
+                {t('back_to_dasboard')}
               </Button>
           </Box>
         </Container>

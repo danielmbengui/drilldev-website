@@ -1,7 +1,16 @@
 {
-    "description_page" : "Financial freedom | Freedom to choose",
+    "description_page" : "Découvrez des univers visuels surprenants grâce à l'intelligence artificielle (IA).",
     "menuHome": "Accueil",
     "menuGallery": "Gallerie",
     "menuTutorial": "Tutoriel",
-    "menu404": "404"
+    "menu404": "404",
+    "langFrench": "Français",
+    "langEnglish": "Anglais",
+    "langPortuguese": "Portugais",
+    "lightMode": "normal",
+    "darkMode": "sombre",
+    "data_provided_by_midjourney": "Données fournies par Midjourney.",
+    "explore_the_api": "Explorer l'API.",
+    "explore_the_docs": "Explorer la documentation.",
+    "all_rights_reserved": "Tous droits réservés."
 }
