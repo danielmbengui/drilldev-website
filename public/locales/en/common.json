@@ -8,6 +8,8 @@
     "langFrench": "French",
     "langEnglish": "English",
     "langPortuguese": "Portuguese",
+    "language":"language",
+    "languages":"languages",
     "lightMode": "light",
     "darkMode": "dark",
     "data_provided_by_midjourney": "Data provided by Midjourney.",

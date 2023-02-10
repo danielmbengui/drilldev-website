@@ -7,6 +7,7 @@ import { FlagIcon } from "./FlagIcons";
 import { DEFAULT_LANGAGE, LANGAGE_ENGLISH, LANGAGE_FRENCH, LANGAGE_PORTUGUESE, NAMESPACE_LANGAGE_COMMON, TAB_LANGAGES } from "@/constants";
 import { getLangageStorage } from "@/lib/storage/UserStorageFunctions";
 import { useTranslation } from "next-i18next";
+import { getFirstLetterUpperCase } from "@/pages/api/constants";
 
 /**
  <GB
@@ -85,19 +86,19 @@ export default function DropdownCustom(props) {
         selectedKeys={selected}
         onSelectionChange={onChangeLang}
       >
-        <Dropdown.Section title="Langues">
+        <Dropdown.Section title={getFirstLetterUpperCase(t('languages', {ns:NAMESPACE_LANGAGE_COMMON}))}>
         <Dropdown.Item key={LANGAGE_FRENCH}  command="⌘F" icon={
-              <FlagIcon size={30} lang={'fr'} />
+              <FlagIcon size={30} lang={LANGAGE_FRENCH} />
             }>
         {t('langFrench', {ns:NAMESPACE_LANGAGE_COMMON})}
         </Dropdown.Item>   
         <Dropdown.Item key={LANGAGE_ENGLISH} command="⌘E" icon={
-              <FlagIcon size={30} lang={'en'} />
+              <FlagIcon size={30} lang={LANGAGE_ENGLISH} />
             }>
         {t('langEnglish', {ns:NAMESPACE_LANGAGE_COMMON})}
         </Dropdown.Item>
         <Dropdown.Item key={LANGAGE_PORTUGUESE} command="⌘P" icon={
-              <FlagIcon size={30} lang={'pt'} />
+              <FlagIcon size={30} lang={LANGAGE_PORTUGUESE} />
             }>
         {t('langPortuguese', {ns:NAMESPACE_LANGAGE_COMMON})}
         </Dropdown.Item>
