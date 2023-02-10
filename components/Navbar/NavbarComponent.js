@@ -10,7 +10,7 @@ import { useMediaQuery } from "../../styles/useMediaQuery";
 import Image from "next/image.js";
 import { useTranslation } from "next-i18next";
 import { updateLangageStorage } from "@/lib/storage/UserStorageFunctions.js";
-import { NAMESPACE_LANGAGE_COMMON, PAGE_LINK_GALLERY, PAGE_LINK_HOME, PAGE_LINK_TUTORIAL, PAGE_LINK_TUTORIAL_DRILL_DEV, PAGE_LINK_TUTORIAL_MIDJOURNEY, STORAGE_SCREEN_MODE, WEBSITE_NAME } from "@/constants.js";
+import { NAMESPACE_LANGAGE_COMMON, NAMESPACE_LANGAGE_TUTORIAL_MIDJOURNEY, PAGE_LINK_GALLERY, PAGE_LINK_HOME, PAGE_LINK_TUTORIAL, PAGE_LINK_TUTORIAL_DRILL_DEV, PAGE_LINK_TUTORIAL_MIDJOURNEY, STORAGE_SCREEN_MODE, WEBSITE_NAME } from "@/constants.js";
 import { useRouter } from "next/router.js";
 import { ChevronDownIcon, icons } from "../Customs/Icons.js";
 import { myLoader } from "@/lib/ImageLoader.js";
@@ -85,7 +85,7 @@ export default function NavbarComponent(props) {
         */
         {
           name: 'Midjourney',
-          description:"Apprenez à générer des images avec l'intelligence artificielle (IA).",
+          description:t('subtitle_midjourney', {ns:NAMESPACE_LANGAGE_TUTORIAL_MIDJOURNEY}),
           href: PAGE_LINK_TUTORIAL_MIDJOURNEY,
           icon: <Image 
             src={`/images/logos/others/midjourney.png`}
