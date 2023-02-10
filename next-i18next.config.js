@@ -1,8 +1,8 @@
 module.exports = {
     i18n: {
-      defaultLocale: 'en',
-      locales: ['en', 'fr', 'pt'],
-      localeDetection: false,
+      defaultLocale: 'fr',
+      locales: ['fr', 'en', 'pt'],
+      localeDetection: true,
     },
     //react: { useSuspense: false },//this line
     //trailingSlash: true,

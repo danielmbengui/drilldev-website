@@ -20,6 +20,7 @@ module.exports = withPWA({
   //webpack5: true,
   webpack: (nextConfig) => {
     nextConfig.resolve.fallback = { 
+      //reactStrictMode: true,
       fs: false,
       timers: false,
       //process: false,

@@ -24,7 +24,7 @@ import DrillDevComponent from '@/components/Tutorial/DrillDevComponent';
 const fetcher = url => axios.get(url).then(res => res.data)
 
 export default function DrillDevPage(props) {
-    const { data, error } = useSWR('/api/drafts?action=get_all', fetcher)
+    //const { data, error } = useSWR('/api/drafts?action=get_all', fetcher)
 
     const { isDark } = useTheme();
     const { lang, setLang, isMobile, isTablet, isLaptop } = props;
@@ -58,13 +58,14 @@ isLaptop={isLaptop}
 }
 
 
-export async function getStaticProps({ locale, params, locales }) {
+export async function getStaticProps({ locale }) {
+
+
     return {
         props: {
-            //pictures: array,
-            //renameFile:renameFile(),
-            ...(await serverSideTranslations(locale, TAB_NAMEPACES, null, locales)),
+          //tabPrice: response,
+            ...(await serverSideTranslations(locale, TAB_NAMEPACES, null, TAB_LANGAGES)),
             // Will be passed to the page component as props
         },
     }
-}
+  }

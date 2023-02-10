@@ -1,0 +1,39 @@
+/* Mobile devices */
+@media (max-width: 480px) {
+    .video {
+    width: 320;
+    height: 400;
+    }
+}
+
+/* Tablet devices */
+@media (max-width: 768px) {
+    .video {
+    width: 320;
+    height: 240;
+    }
+}
+
+/* Laptop devices */
+@media (max-width: 1024px) {
+    .video {
+    width: 320;
+    height: 240;
+    }
+}
+
+/* Desktop devices */
+@media (max-width: 1200px) {
+    .video {
+    width: 320;
+    height: 240;
+    }
+}
+
+/* TV devices */
+@media (min-width: 1201px) {
+    .video {
+    width: 320;
+    height: 240;
+    }
+}

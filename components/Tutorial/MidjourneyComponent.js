@@ -17,6 +17,7 @@ import Script from 'next/script';
 import ContainerPageWithoutHeaderComponent from '@/components/Containers/ContainerPageWithoutHeaderComponent';
 import { Pagination } from "@nextui-org/react";
 import { myLoader } from '@/lib/ImageLoader';
+import VideoCardCustom from '../Customs/VideoCardCustom';
 
 
 
@@ -27,7 +28,7 @@ import { myLoader } from '@/lib/ImageLoader';
 const fetcher = url => axios.get(url).then(res => res.data)
 
 export default function MidjourneyComponent(props) {
-  const { data, error } = useSWR('/api/drafts?action=get_all', fetcher)
+  //const { data, error } = useSWR('/api/drafts?action=get_all', fetcher)
 
   const { isDark } = useTheme();
   const { lang, setLang, isMobile, isTablet, isLaptop } = props;
@@ -44,6 +45,13 @@ export default function MidjourneyComponent(props) {
 
   return (
     <Grid.Container xs={12} justify='center' alignItems='center' direction='column' >
+      <Grid.Container justify='center'>
+      <VideoCardCustom isMobile={isMobile} />
+      </Grid.Container>
+
+
+{
+/*
       <Grid.Container css={{ mb: 10,}} justify="center">
         <Grid xs={12} sm={4} justify="center" alignItems="center" >
         <Card css={{ width: 'fit-content', background:'$accents0', opacity:0.9}}>
@@ -53,8 +61,8 @@ export default function MidjourneyComponent(props) {
                 <Image
                     src='/images/logos/others/midjourney.png'
                     alt={`logo Drill Dev`}
-                    width={150}
-                    height={150}
+                    width={100}
+                    height={100}
                     style={{
                       maxWidth: '100%',
                       maxHeight: '100%',
@@ -77,8 +85,10 @@ export default function MidjourneyComponent(props) {
             </Grid.Container>
           </Card.Body>
         </Card>
+
         </Grid>
       </Grid.Container>
+      
       <Grid xs={12} sm={6} justify='center' alignItems='center' css={{
         mx: 'auto',
       }}>
@@ -266,6 +276,9 @@ export default function MidjourneyComponent(props) {
           </Collapse>
         </Collapse.Group>
       </Grid>
+*/
+
+}
 
 
 

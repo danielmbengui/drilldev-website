@@ -91,7 +91,9 @@ export default function DropdownCustom(props) {
             }>
         {t('langFrench', {ns:NAMESPACE_LANGAGE_COMMON})}
         </Dropdown.Item>
-        <Dropdown.Item key={LANGAGE_ENGLISH} command="⌘E" icon={
+        {
+          /*
+          <Dropdown.Item key={LANGAGE_ENGLISH} command="⌘E" icon={
               <FlagIcon size={30} lang={'en'} />
             }>
         {t('langEnglish', {ns:NAMESPACE_LANGAGE_COMMON})}
@@ -101,6 +103,8 @@ export default function DropdownCustom(props) {
             }>
         {t('langPortuguese', {ns:NAMESPACE_LANGAGE_COMMON})}
         </Dropdown.Item>
+          */
+        }
         {
             /**
              <Dropdown.Item key="number">Number</Dropdown.Item>
